@@ -4,3 +4,4 @@ target/*
 *.DS_STORE
 bin
 bin/*
+/.gradle/
