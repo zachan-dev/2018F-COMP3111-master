@@ -171,4 +171,15 @@ public class WebScraper {
 		return null;
 	}
 
+	public List<Item> refine(String keyword){
+		Vector<Item> refine = new Vector<Item>();
+		for (int i=0;i<this.result.size();i++)
+		{
+			if (this.result.get(i).getTitle().contains(keyword))
+			{
+				refine.add(this.result.get(i));
+			}
+		}		
+		return refine;
+	}
 }

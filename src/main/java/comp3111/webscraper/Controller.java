@@ -9,6 +9,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.Hyperlink;
+import javafx.scene.control.Button;
 import javafx.scene.control.Alert;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
@@ -47,7 +48,13 @@ public class Controller {
     private TextField textFieldKeyword;
     
     @FXML
+    private TextField textFieldRefineKeyword;
+    
+    @FXML
     private TextArea textAreaConsole;
+    
+    @FXML
+    private Button RefineButton;
     
     @FXML private TableView<Item> tableView;
     @FXML private TableColumn<Item, String> columnTitle;
@@ -77,6 +84,7 @@ public class Controller {
     @FXML
     private void initialize() {
     	lastSearch.setDisable(true);
+    	RefineButton.setDisable(true);
     }
     
     /**
@@ -99,6 +107,7 @@ public class Controller {
     		output += item.getTitle() + "\t" + item.getPortal() + "\t" + item.getPrice() + "\t" + item.getUrl() + "\t" + item.getDate() + "\n";
     	}
     	textAreaConsole.setText(output);
+    	RefineButton.setDisable(false);
     	size = 0;
     	pages = 0;
     	
@@ -106,7 +115,20 @@ public class Controller {
     	table(result);
 
     }
-    
+    @FXML
+    private void actionRefine() {
+
+    	System.out.println("actionRefine: " + textFieldRefineKeyword.getText());
+    	
+    	List<Item> refine = scraper.refine(textFieldRefineKeyword.getText());
+    	String output = "";
+    	
+    	for (Item item : refine) {
+    		output += item.getTitle() + "\t" + item.getPortal() + "\t" + item.getPrice() + "\t" +item.getUrl() + "\n";
+    	}
+    	RefineButton.setDisable(true);
+    	textAreaConsole.setText(output);    	
+    }
     /**
      * Called when the new button is pressed. Very dummy action - print something in the command prompt.
      */
