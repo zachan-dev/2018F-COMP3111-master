@@ -2,8 +2,9 @@ package comp3111.webscraper;
 
 
 
-public class Item {
+public class Item implements Comparable<Item>{
 	private String title ; 
+	private String portal;
 	private double price ;
 	private String url ;
 	private String date ;
@@ -13,6 +14,12 @@ public class Item {
 	}
 	public void setTitle(String title) {
 		this.title = title;
+	}
+	public String getPortal() {
+		return portal;
+	}
+	public void setPortal(String portal) {
+		this.portal = portal;
 	}
 	public double getPrice() {
 		return price;
@@ -32,6 +39,19 @@ public class Item {
 	public void setDate(String date) {	
 		this.date = date;
 	}
-	
+	public int compareTo(Item a) {
+		double result = this.price-a.price;
+		if (result<0)
+		{
+			return -1;
+		}
+		else if (result==0) {
+			return this.portal.compareTo(a.portal);
+		}
+		else
+		{
+			return 1;
+		}
+	}
 
 }

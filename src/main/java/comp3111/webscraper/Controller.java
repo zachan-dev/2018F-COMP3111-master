@@ -73,16 +73,17 @@ public class Controller {
     private void actionSearch() throws ParseException {
     	System.out.println("actionSearch: " + textFieldKeyword.getText());
     	List<Item> result = scraper.scrape(textFieldKeyword.getText());
-    	String output = "Total items scrapped = " + size + ".\t" + "Total pages obtained = " + pages + ".\n\n";
+    	//String output = "Total items scrapped = " + size + ".\t" + "Total pages obtained = " + pages + ".\n\n";
+    	String output="";
+    	//System.out.println(result);
     	for (Item item : result) {
-    		output += item.getTitle() + "\t" + item.getPrice() + "\t" + item.getUrl() + "\t" + item.getDate() + "\n";
+    		output += item.getTitle() + "\t" + item.getPortal() + "\t" + item.getPrice() + "\t" + item.getUrl() + "\t" + item.getDate() + "\n";
     	}
     	textAreaConsole.setText(output);
     	size = 0;
     	pages = 0;
 
-    	//labelCount.setText("Hi");
-    	summary(result);
+    	//labelCount.setText("Hi")
     	
     	
     }
@@ -95,45 +96,7 @@ public class Controller {
     	System.out.println("actionNew");
     }
     
-    private void summary(List<Item> result) throws ParseException {
-		if(result != null) {
-			double sum=0;
-			int count=0;
-			double min= Double.POSITIVE_INFINITY;
-			String urlMin = "";
-			SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm");
-			Date latest = simpleDateFormat.parse("0000-00-00 00:00");
-			String urlLatest = "";
 
-			labelCount.setText(Integer.toString(result.size()));
-			for(Item item : result) {
-				sum += item.getPrice();
-				if(item.getPrice()>0.0) {
-					count++;
-					if(item.getPrice()<min) {
-						min = item.getPrice();
-						urlMin = item.getUrl();
-					}
-
-				}
-				if(simpleDateFormat.parse(item.getDate()).after(latest)) {
-					latest = simpleDateFormat.parse(item.getDate());
-					urlLatest = item.getUrl();
-				}
-			}
-
-			labelPrice.setText(String.format("%f", (float)sum/count));
-			labelMin.setText(urlMin);
-			labelLatest.setText(urlLatest);
-
-		}else {
-			labelCount.setText("0");
-			labelPrice.setText("-");
-			labelMin.setText("-");
-			labelLatest.setText("-");
-		}
-
-	}
 
 }
 
