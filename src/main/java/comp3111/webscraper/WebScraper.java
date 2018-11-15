@@ -1,5 +1,7 @@
 package comp3111.webscraper;
 
+
+
 import java.net.URLEncoder;
 import java.util.List;
 
@@ -8,6 +10,13 @@ import com.gargoylesoftware.htmlunit.html.HtmlAnchor;
 import com.gargoylesoftware.htmlunit.html.HtmlElement;
 import com.gargoylesoftware.htmlunit.html.HtmlPage;
 import java.util.Vector;
+import java.util.Collections;
+
+
+import org.jsoup.Jsoup;
+import org.jsoup.nodes.Document;
+import org.jsoup.nodes.Element;
+import org.jsoup.select.*;
 
 
 /**
@@ -67,7 +76,9 @@ import java.util.Vector;
 public class WebScraper {
 
 	private static final String DEFAULT_URL = "https://newyork.craigslist.org/";
+	private static final String DEFAULT_URL1 = "https://www.preloved.co.uk/";
 	private WebClient client;
+	protected List<Item> result;
 
 	/**
 	 * Default Constructor 
@@ -87,6 +98,7 @@ public class WebScraper {
 	public List<Item> scrape(String keyword) {
 
 		try {
+	
 			String searchUrl = DEFAULT_URL + "search/sss?sort=rel&query=" + URLEncoder.encode(keyword, "UTF-8");
 			HtmlPage page = client.getPage(searchUrl);
 
@@ -94,34 +106,85 @@ public class WebScraper {
 			List<?> items = (List<?>) page.getByXPath("//li[@class='result-row']");
 			
 			Vector<Item> result = new Vector<Item>();
+			//System.out.print (items.size());
+			//System.out.print (items);
 
 			for (int i = 0; i < items.size(); i++) {
 				HtmlElement htmlItem = (HtmlElement) items.get(i);
 				HtmlAnchor itemAnchor = ((HtmlAnchor) htmlItem.getFirstByXPath(".//p[@class='result-info']/a"));
+				//System.out.print (itemAnchor);
 				HtmlElement spanPrice = ((HtmlElement) htmlItem.getFirstByXPath(".//a/span[@class='result-price']"));
-				HtmlElement spanDate = ((HtmlElement) htmlItem.getFirstByXPath(".//time[@class='result-date']"));
 
 				// It is possible that an item doesn't have any price, we set the price to 0.0
 				// in this case
 				String itemPrice = spanPrice == null ? "0.0" : spanPrice.asText();
-				//String itemDate = spanDate.asText();
-				String itemDate = spanDate.getAttribute("datetime");
 
 				Item item = new Item();
 				item.setTitle(itemAnchor.asText());
-				item.setUrl(itemAnchor.getHrefAttribute());
-
+				item.setPortal("Craglist");
+				item.setUrl(DEFAULT_URL + itemAnchor.getHrefAttribute());
+				//item.setPrice(0);
 				item.setPrice(new Double(itemPrice.replace("$", "")));
-				item.setDate(itemDate);
 
 				result.add(item);
 			}
 			client.close();
+		
+			String searchUrl1 = DEFAULT_URL1 + "search?keyword=" + URLEncoder.encode(keyword, "UTF-8");
+			Document doc = Jsoup.connect(searchUrl1).get();
+			Elements ele=doc.select("li.search-result");
+			Elements a=ele.select("li[data-test-element='search-result']");
+
+			for (int i = 0; i < a.size(); i++) {
+				//System.out.println(i);
+				//System.out.println("start");
+				String name=a.get(i).select("span[itemprop='name']").text();
+				String price=a.get(i).select("span[itemprop='price']").text();
+				//System.out.println(name);	
+				
+				try {
+				//System.out.println(price);
+				//System.out.println(price.substring(1,price.length()));
+				price=price.substring(1,price.length());	
+				//System.out.println(fprice);
+				}
+				catch (Exception e) {
+					price="0";
+				}
+				//System.out.println(price);
+				String link=a.get(i).select("a").attr("href");
+				//System.out.println(link);
+				
+				//System.out.println("end");
+				Item item = new Item();
+				item.setTitle(name);
+				item.setPortal("Preloved");
+				item.setUrl(link);
+				//item.setPrice(0);
+				item.setPrice(new Double(price));
+
+				result.add(item);
+				
+				}
+			Collections.sort(result);	
+			this.result=result;
 			return result;
 		} catch (Exception e) {
 			System.out.println(e);
 		}
 		return null;
+	}
+	
+	public List<Item> refine(String keyword){
+		Vector<Item> refine = new Vector<Item>();
+		for (int i=0;i<this.result.size();i++)
+		{
+			if (this.result.get(i).getTitle().contains(keyword))
+			{
+				refine.add(this.result.get(i));
+			}
+		}		
+		return refine;
 	}
 
 }

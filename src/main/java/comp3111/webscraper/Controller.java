@@ -9,12 +9,10 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.Hyperlink;
+import javafx.scene.control.Button;
+
+
 import java.util.List;
-
-
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 
 
 /**
@@ -25,7 +23,7 @@ import java.util.Date;
  * Controller class that manage GUI interaction. Please see document about JavaFX for details.
  * 
  */
-public class Controller {
+public class Controller{
 
     @FXML 
     private Label labelCount; 
@@ -43,15 +41,26 @@ public class Controller {
     private TextField textFieldKeyword;
     
     @FXML
+    private TextField textFieldRefineKeyword;
+    
+    @FXML
     private TextArea textAreaConsole;
     
+    @FXML
+    private Button RefineButton;
+    
     private WebScraper scraper;
+    
+    private int search;
     
     /**
      * Default controller
      */
     public Controller() {
     	scraper = new WebScraper();
+    	search=0;
+    	//RefineButton.setDisable(true);
+    	
     }
 
     /**
@@ -59,27 +68,39 @@ public class Controller {
      */
     @FXML
     private void initialize() {
-    	
+    	RefineButton.setDisable(true);
     }
     
     /**
      * Called when the search button is pressed.
-     * @throws ParseException 
      */
     @FXML
-    private void actionSearch() throws ParseException {
+    private void actionSearch() {
     	System.out.println("actionSearch: " + textFieldKeyword.getText());
     	List<Item> result = scraper.scrape(textFieldKeyword.getText());
     	String output = "";
     	for (Item item : result) {
-    		output += item.getTitle() + "\t" + item.getPrice() + "\t" + item.getUrl() + "\t" + item.getDate() + "\n";
+    		output += item.getTitle() + "\t" + item.getPortal() + "\t" + item.getPrice() + "\t" +item.getUrl() + "\n";
     	}
     	textAreaConsole.setText(output);
+    	RefineButton.setDisable(false);
+    	labelCount.setText("Hi");  
+    }
 
-    	//labelCount.setText("Hi");
-    	summary(result);
+    
+    @FXML
+    private void actionRefine() {
+
+    	System.out.println("actionRefine: " + textFieldRefineKeyword.getText());
     	
+    	List<Item> refine = scraper.refine(textFieldRefineKeyword.getText());
+    	String output = "";
     	
+    	for (Item item : refine) {
+    		output += item.getTitle() + "\t" + item.getPortal() + "\t" + item.getPrice() + "\t" +item.getUrl() + "\n";
+    	}
+    	RefineButton.setDisable(true);
+    	textAreaConsole.setText(output);    	
     }
     
     /**
@@ -89,46 +110,5 @@ public class Controller {
     private void actionNew() {
     	System.out.println("actionNew");
     }
-    
-    private void summary(List<Item> result) throws ParseException {
-		if(result != null) {
-			double sum=0;
-			int count=0;
-			double min= Double.POSITIVE_INFINITY;
-			String urlMin = "";
-			SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm");
-			Date latest = simpleDateFormat.parse("0000-00-00 00:00");
-			String urlLatest = "";
-
-			labelCount.setText(Integer.toString(result.size()));
-			for(Item item : result) {
-				sum += item.getPrice();
-				if(item.getPrice()>0.0) {
-					count++;
-					if(item.getPrice()<min) {
-						min = item.getPrice();
-						urlMin = item.getUrl();
-					}
-
-				}
-				if(simpleDateFormat.parse(item.getDate()).after(latest)) {
-					latest = simpleDateFormat.parse(item.getDate());
-					urlLatest = item.getUrl();
-				}
-			}
-
-			labelPrice.setText(String.format("%f", (float)sum/count));
-			labelMin.setText(urlMin);
-			labelLatest.setText(urlLatest);
-
-		}else {
-			labelCount.setText("0");
-			labelPrice.setText("-");
-			labelMin.setText("-");
-			labelLatest.setText("-");
-		}
-
-	}
-
 }
 
