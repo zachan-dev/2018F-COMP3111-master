@@ -31,7 +31,7 @@ import java.util.Date;
  */
 public class Controller {
 
-    @FXML 
+    @FXML
     private Label labelCount; 
 
     @FXML 
