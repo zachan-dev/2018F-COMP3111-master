@@ -9,6 +9,10 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.Hyperlink;
+import javafx.scene.control.Alert;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
+import javafx.scene.control.MenuItem;
 import java.util.List;
 
 
@@ -45,10 +49,20 @@ public class Controller {
     @FXML
     private TextArea textAreaConsole;
     
+    @FXML private TableView<Item> tableView;
+    @FXML private TableColumn<Item, String> columnTitle;
+    @FXML private TableColumn<Item, Double> columnUrl;
+    @FXML private TableColumn<Item, String> columnDate;
+    
+    @FXML
+    private MenuItem lastSearch;
+    
     private WebScraper scraper;
     
     public static int size = 0;
     public static int pages = 0;
+    public static String lastKeyword = "";
+    public static String latestKeyword = "";
     
     /**
      * Default controller
@@ -58,11 +72,11 @@ public class Controller {
     }
 
     /**
-     * Default initializer. It is empty.
+     * Default initializer.
      */
     @FXML
     private void initialize() {
-    	
+    	lastSearch.setDisable(true);
     }
     
     /**
@@ -71,6 +85,13 @@ public class Controller {
      */
     @FXML
     private void actionSearch() throws ParseException {
+    	lastKeyword = latestKeyword;
+    	latestKeyword = textFieldKeyword.getText();
+    	if (lastKeyword != "") {
+    		System.out.println("lastSearch enabled");
+    		lastSearch.setDisable(false);
+    	}
+
     	System.out.println("actionSearch: " + textFieldKeyword.getText());
     	List<Item> result = scraper.scrape(textFieldKeyword.getText());
     	String output = "Total items scrapped = " + size + ".\t" + "Total pages obtained = " + pages + ".\n\n";
@@ -81,9 +102,8 @@ public class Controller {
     	size = 0;
     	pages = 0;
 
-    	//labelCount.setText("Hi");
     	summary(result);
-    	
+    	table(result);
     	
     }
     
@@ -91,8 +111,44 @@ public class Controller {
      * Called when the new button is pressed. Very dummy action - print something in the command prompt.
      */
     @FXML
-    private void actionNew() {
-    	System.out.println("actionNew");
+    private void actionLast() throws ParseException {
+    	if (lastKeyword != "") {
+    		textFieldKeyword.setText(lastKeyword);
+    		actionSearch();
+    	}
+    	
+    	System.out.println("actionLast");
+	}
+    
+    @FXML
+    private void actionAbout() {
+    	Alert dg = new Alert(Alert.AlertType.INFORMATION);
+    	dg.setTitle("About the team");
+    	dg.setHeaderText("COMP3111 Project Team No. 34");
+    	dg.setContentText("Developers Info: "
+    			+ "\n CHAN, Siu Him\t ITSC: shchanam\t GitHub: https://github.com/zach1king"
+    			+ "\n CHANG, Hiu Tung\t ITSC: htchang\t Github: https://github.com/htchang1"
+    			+ "\n LEE, Yuen Nam\t ITSC: ynleeaa\t Github: https://github.com/heidileeyn");
+    	dg.show();
+    }
+    
+    @FXML
+    private void actionQuit() {
+    	System.exit(0);
+    }
+    
+    @FXML
+    private void actionClose() {
+    	lastKeyword = "";
+    	latestKeyword = "";
+    	lastSearch.setDisable(true);
+    	textFieldKeyword.setText("");
+    	textAreaConsole.setText("");
+    	labelCount.setText("<total>");
+    	labelPrice.setText("<AvgPrice>");
+    	labelMin.setText("<Lowest>");
+    	labelLatest.setText("<Latest>");
+    	tableView.getItems().clear();
     }
     
     private void summary(List<Item> result) throws ParseException {
@@ -134,6 +190,10 @@ public class Controller {
 		}
 
 	}
+    
+    private void table(List<Item> result) throws ParseException {
+    	
+    }
 
 }
 
