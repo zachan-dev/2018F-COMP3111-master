@@ -7,7 +7,12 @@ import com.gargoylesoftware.htmlunit.WebClient;
 import com.gargoylesoftware.htmlunit.html.HtmlAnchor;
 import com.gargoylesoftware.htmlunit.html.HtmlElement;
 import com.gargoylesoftware.htmlunit.html.HtmlPage;
-import java.util.Vector;
+import java.util.Vector;import java.util.Collections;
+
+import org.jsoup.Jsoup;
+import org.jsoup.nodes.Document;
+import org.jsoup.nodes.Element;
+import org.jsoup.select.*;
 
 
 /**
@@ -67,7 +72,9 @@ import java.util.Vector;
 public class WebScraper {
 
 	private static final String DEFAULT_URL = "https://newyork.craigslist.org/";
+	private static final String DEFAULT_URL1 = "https://www.preloved.co.uk/";
 	private WebClient client;
+	protected List<Item> result;
 
 	/**
 	 * Default Constructor 
@@ -129,6 +136,34 @@ public class WebScraper {
 			} while (Controller.size % 120 == 0 && Controller.size != 0);
 			
 			client.close();
+			String searchUrl1 = DEFAULT_URL1 + "search?keyword=" + URLEncoder.encode(keyword, "UTF-8");
+			Document doc = Jsoup.connect(searchUrl1).get();
+			Elements ele=doc.select("li.search-result");
+			Elements a=ele.select("li[data-test-element='search-result']");
+
+			for (int i = 0; i < a.size(); i++) {
+				String name=a.get(i).select("span[itemprop='name']").text();
+				String price=a.get(i).select("span[itemprop='price']").text();				
+				try {
+				price=price.substring(1,price.length());	
+				price=price.replace(",","");
+				}
+				catch (Exception e) {
+					price="0";
+				}
+				String link=a.get(i).select("a").attr("href");
+				Item item = new Item();
+				item.setTitle(name);
+				item.setPortal("Preloved");
+				item.setUrl(link);
+				item.setPrice(new Double(price));
+				result.add(item);				
+				}
+			
+			Collections.sort(result);	
+			this.result=result;
+			
+			
 			return result;
 		} catch (Exception e) {
 			System.out.println(e);
