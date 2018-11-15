@@ -97,7 +97,7 @@ public class WebScraper {
 		
 		try {
 			Vector<Item> result = new Vector<Item>();		
-			/*
+			
 			do {
 				int scrappingPage = Controller.pages + 1;
 				System.out.println("Scrapping page number " + scrappingPage);
@@ -137,7 +137,7 @@ public class WebScraper {
 				
 			} while (Controller.size % 120 == 0 && Controller.size != 0);			
 			client.close();
-			*/
+			
 			String searchUrl1 = DEFAULT_URL1 + "search?keyword=" + URLEncoder.encode(keyword, "UTF-8");
 			Document doc = Jsoup.connect(searchUrl1).get();
 			Elements ele=doc.select("li.search-result");
