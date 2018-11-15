@@ -47,6 +47,9 @@ public class Controller {
     
     private WebScraper scraper;
     
+    public static int size = 0;
+    public static int pages = 0;
+    
     /**
      * Default controller
      */
@@ -70,11 +73,13 @@ public class Controller {
     private void actionSearch() throws ParseException {
     	System.out.println("actionSearch: " + textFieldKeyword.getText());
     	List<Item> result = scraper.scrape(textFieldKeyword.getText());
-    	String output = "";
+    	String output = "Total items scrapped = " + size + ".\t" + "Total pages obtained = " + pages + ".\n\n";
     	for (Item item : result) {
     		output += item.getTitle() + "\t" + item.getPrice() + "\t" + item.getUrl() + "\t" + item.getDate() + "\n";
     	}
     	textAreaConsole.setText(output);
+    	size = 0;
+    	pages = 0;
 
     	//labelCount.setText("Hi");
     	summary(result);
