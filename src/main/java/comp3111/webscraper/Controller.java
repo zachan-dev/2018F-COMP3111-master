@@ -14,6 +14,12 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.Hyperlink;
+
+import javafx.scene.control.Button;
+import javafx.scene.control.Alert;
+import javafx.scene.control.MenuItem;
+
+
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -47,6 +53,9 @@ public class Controller {
     private TextField textFieldKeyword;
     
     @FXML
+    private TextField textFieldRefineKeyword;
+    
+    @FXML
     private TextArea textAreaConsole;
     
     @FXML
@@ -64,10 +73,19 @@ public class Controller {
     @FXML
     private TableColumn<TableItem,String> itemDate;
     
+    @FXML
+    private Button RefineButton;
     
-    
+    @FXML
+    private MenuItem lastSearch;
+
     
     private WebScraper scraper;
+    
+    public static int size = 0;
+    public static int pages = 0;
+    public static String lastKeyword = "";
+    public static String latestKeyword = "";
     
     /**
      * Default controller
@@ -77,11 +95,12 @@ public class Controller {
     }
 
     /**
-     * Default initializer. It is empty.
+     * Default initializer.
      */
     @FXML
     private void initialize() {
-    	
+    	lastSearch.setDisable(true);
+    	RefineButton.setDisable(true);
     }
     
     /**
@@ -90,27 +109,85 @@ public class Controller {
      */
     @FXML
     private void actionSearch() throws ParseException {
+    	lastKeyword = latestKeyword;
+    	latestKeyword = textFieldKeyword.getText();
+    	if (lastKeyword != "") {
+    		System.out.println("lastSearch enabled");
+    		lastSearch.setDisable(false);
+    	}
+
     	System.out.println("actionSearch: " + textFieldKeyword.getText());
     	List<Item> result = scraper.scrape(textFieldKeyword.getText());
-    	String output = "";
+    	String output = "Total items scrapped = " + size + ".\t" + "Total pages obtained = " + pages + ".\n\n";
     	for (Item item : result) {
-    		output += item.getTitle() + "\t" + item.getPrice() + "\t" + item.getUrl() + "\t" + item.getDate() + "\n";
+    		output += item.getTitle() + "\t" + item.getPortal() + "\t" + item.getPrice() + "\t" + item.getUrl() + "\t" + item.getDate() + "\n";
     	}
     	textAreaConsole.setText(output);
-
-    	//labelCount.setText("Hi");
+    	RefineButton.setDisable(false);
+    	size = 0;
+    	pages = 0;
+    	
     	summary(result);
     	fillTable(result);
-    	
-    	
+
     }
-    
+    @FXML
+    private void actionRefine() {
+
+    	System.out.println("actionRefine: " + textFieldRefineKeyword.getText());
+
+    	
+    	List<Item> refine = scraper.refine(textFieldRefineKeyword.getText());
+    	String output = "";
+    	
+    	for (Item item : refine) {
+    		output += item.getTitle() + "\t" + item.getPortal() + "\t" + item.getPrice() + "\t" +item.getUrl() + "\n";
+    	}
+    	RefineButton.setDisable(true);
+    	textAreaConsole.setText(output);    	
+    }
     /**
      * Called when the new button is pressed. Very dummy action - print something in the command prompt.
      */
     @FXML
-    private void actionNew() {
-    	System.out.println("actionNew");
+    private void actionLast() throws ParseException {
+    	if (lastKeyword != "") {
+    		textFieldKeyword.setText(lastKeyword);
+    		actionSearch();
+    	}
+    	
+    	System.out.println("actionLast");
+	}
+    
+    @FXML
+    private void actionAbout() {
+    	Alert dg = new Alert(Alert.AlertType.INFORMATION);
+    	dg.setTitle("About the team");
+    	dg.setHeaderText("COMP3111 Project Team No. 34");
+    	dg.setContentText("Developers Info: "
+    			+ "\n CHAN, Siu Him\t ITSC: shchanam\t GitHub: https://github.com/zach1king"
+    			+ "\n CHANG, Hiu Tung\t ITSC: htchang\t Github: https://github.com/htchang1"
+    			+ "\n LEE, Yuen Nam\t ITSC: ynleeaa\t Github: https://github.com/heidileeyn");
+    	dg.show();
+    }
+    
+    @FXML
+    private void actionQuit() {
+    	System.exit(0);
+    }
+    
+    @FXML
+    private void actionClose() {
+    	lastKeyword = "";
+    	latestKeyword = "";
+    	lastSearch.setDisable(true);
+    	textFieldKeyword.setText("");
+    	textAreaConsole.setText("");
+    	labelCount.setText("<total>");
+    	labelPrice.setText("<AvgPrice>");
+    	labelMin.setText("<Lowest>");
+    	labelLatest.setText("<Latest>");
+    	table.getItems().clear();
     }
     
     private void summary(List<Item> result) throws ParseException {
@@ -184,7 +261,6 @@ public class Controller {
 
     }
 	
-
 
 }
 
