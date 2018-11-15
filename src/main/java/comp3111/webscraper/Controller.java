@@ -4,17 +4,21 @@
 package comp3111.webscraper;
 
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.Hyperlink;
-import java.util.List;
-
-
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 
 /**
@@ -44,6 +48,24 @@ public class Controller {
     
     @FXML
     private TextArea textAreaConsole;
+    
+    @FXML
+    private TableView<TableItem> table;
+    
+    @FXML
+    private TableColumn<TableItem,String> itemTitle;
+    
+    @FXML
+    private TableColumn<TableItem,Double> itemPrice;
+    
+    @FXML
+    private TableColumn<TableItem,String> itemURL;
+    
+    @FXML
+    private TableColumn<TableItem,String> itemDate;
+    
+    
+    
     
     private WebScraper scraper;
     
@@ -78,6 +100,7 @@ public class Controller {
 
     	//labelCount.setText("Hi");
     	summary(result);
+    	fillTable(result);
     	
     	
     }
@@ -129,6 +152,42 @@ public class Controller {
 		}
 
 	}
+    
+
+    
+    private void fillTable (List<Item> result) {
+    	table.getItems().clear();
+		itemTitle.setCellValueFactory(new PropertyValueFactory<TableItem, String>("title"));
+        itemPrice.setCellValueFactory(new PropertyValueFactory<TableItem, Double>("price"));
+        itemURL.setCellValueFactory(new PropertyValueFactory<TableItem, String>("url"));
+        itemDate.setCellValueFactory(new PropertyValueFactory<TableItem, String>("date"));
+        
+        
+        //List<Item> property = new List<Item>
+        ArrayList<TableItem> tableItem = new ArrayList<TableItem>();
+        for(Item item: result) {
+        	//tableItem.add(new TableItem(item.getTitle(),item.getPrice(),item.getTitle(),item.getDate()));
+        	//System.out.println(item.getTitle() + '\t' + item.getUrl());
+        	TableItem temp = new TableItem(item.getTitle(),item.getPrice(),item.getTitle(),item.getDate());
+        	temp.setUrl(item.getUrl());
+        	tableItem.add(temp);
+        }
+        final ObservableList<TableItem> data = FXCollections.observableArrayList(tableItem);
+        /*for(TableItem item: data) {
+        	System.out.println(item.getTitle() + '\t' + item.getURL());
+        }*/
+        
+        //table.setItems(data);
+        //table.getColumns().setAll();
+        table.getItems().addAll(data);
+        //table.getColumns().addAll(itemTitle, itemPrice, itemURL,itemDate);
+
+    }
+	
+
 
 }
+
+	
+
 
