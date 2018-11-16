@@ -35,6 +35,7 @@ import java.util.List;
  * Controller class that manage GUI interaction. Please see document about JavaFX for details.
  * 
  */
+
 public class Controller extends WebScraperApplication{
 
 	@FXML 
