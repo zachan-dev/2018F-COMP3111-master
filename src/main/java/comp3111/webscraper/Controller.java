@@ -4,21 +4,27 @@
 package comp3111.webscraper;
 
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
-import javafx.scene.control.TextArea;
-import javafx.scene.control.Hyperlink;
-import javafx.scene.control.Alert;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.TextField;
+import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.control.TextArea;
+import javafx.scene.control.Hyperlink;
+
+import javafx.scene.control.Button;
+import javafx.scene.control.Alert;
 import javafx.scene.control.MenuItem;
-import java.util.List;
 
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 
 /**
@@ -31,7 +37,7 @@ import java.util.Date;
  */
 public class Controller {
 
-    @FXML 
+    @FXML
     private Label labelCount; 
 
     @FXML 
@@ -47,15 +53,32 @@ public class Controller {
     private TextField textFieldKeyword;
     
     @FXML
+    private TextField textFieldRefineKeyword;
+    
+    @FXML
     private TextArea textAreaConsole;
     
-    @FXML private TableView<Item> tableView;
-    @FXML private TableColumn<Item, String> columnTitle;
-    @FXML private TableColumn<Item, Double> columnUrl;
-    @FXML private TableColumn<Item, String> columnDate;
+    @FXML
+    private TableView<TableItem> table;
+    
+    @FXML
+    private TableColumn<TableItem,String> itemTitle;
+    
+    @FXML
+    private TableColumn<TableItem,Double> itemPrice;
+    
+    @FXML
+    private TableColumn<TableItem,String> itemURL;
+    
+    @FXML
+    private TableColumn<TableItem,String> itemDate;
+    
+    @FXML
+    private Button RefineButton;
     
     @FXML
     private MenuItem lastSearch;
+
     
     private WebScraper scraper;
     
@@ -77,6 +100,7 @@ public class Controller {
     @FXML
     private void initialize() {
     	lastSearch.setDisable(true);
+    	RefineButton.setDisable(true);
     }
     
     /**
@@ -96,17 +120,32 @@ public class Controller {
     	List<Item> result = scraper.scrape(textFieldKeyword.getText());
     	String output = "Total items scrapped = " + size + ".\t" + "Total pages obtained = " + pages + ".\n\n";
     	for (Item item : result) {
-    		output += item.getTitle() + "\t" + item.getPrice() + "\t" + item.getUrl() + "\t" + item.getDate() + "\n";
+    		output += item.getTitle() + "\t" + item.getPortal() + "\t" + item.getPrice() + "\t" + item.getUrl() + "\t" + item.getDate() + "\n";
     	}
     	textAreaConsole.setText(output);
+    	RefineButton.setDisable(false);
     	size = 0;
     	pages = 0;
-
-    	summary(result);
-    	table(result);
     	
+    	summary(result);
+    	fillTable(result);
+
     }
-    
+    @FXML
+    private void actionRefine() {
+
+    	System.out.println("actionRefine: " + textFieldRefineKeyword.getText());
+
+    	
+    	List<Item> refine = scraper.refine(textFieldRefineKeyword.getText());
+    	String output = "";
+    	
+    	for (Item item : refine) {
+    		output += item.getTitle() + "\t" + item.getPortal() + "\t" + item.getPrice() + "\t" +item.getUrl() + "\n";
+    	}
+    	RefineButton.setDisable(true);
+    	textAreaConsole.setText(output);    	
+    }
     /**
      * Called when the new button is pressed. Very dummy action - print something in the command prompt.
      */
@@ -148,7 +187,7 @@ public class Controller {
     	labelPrice.setText("<AvgPrice>");
     	labelMin.setText("<Lowest>");
     	labelLatest.setText("<Latest>");
-    	tableView.getItems().clear();
+    	table.getItems().clear();
     }
     
     private void summary(List<Item> result) throws ParseException {
@@ -191,9 +230,40 @@ public class Controller {
 
 	}
     
-    private void table(List<Item> result) throws ParseException {
-    	
+
+    
+    private void fillTable (List<Item> result) {
+    	table.getItems().clear();
+		itemTitle.setCellValueFactory(new PropertyValueFactory<TableItem, String>("title"));
+        itemPrice.setCellValueFactory(new PropertyValueFactory<TableItem, Double>("price"));
+        itemURL.setCellValueFactory(new PropertyValueFactory<TableItem, String>("url"));
+        itemDate.setCellValueFactory(new PropertyValueFactory<TableItem, String>("date"));
+        
+        
+        //List<Item> property = new List<Item>
+        ArrayList<TableItem> tableItem = new ArrayList<TableItem>();
+        for(Item item: result) {
+        	//tableItem.add(new TableItem(item.getTitle(),item.getPrice(),item.getTitle(),item.getDate()));
+        	//System.out.println(item.getTitle() + '\t' + item.getUrl());
+        	TableItem temp = new TableItem(item.getTitle(),item.getPrice(),item.getTitle(),item.getDate());
+        	temp.setUrl(item.getUrl());
+        	tableItem.add(temp);
+        }
+        final ObservableList<TableItem> data = FXCollections.observableArrayList(tableItem);
+        /*for(TableItem item: data) {
+        	System.out.println(item.getTitle() + '\t' + item.getURL());
+        }*/
+        
+        //table.setItems(data);
+        //table.getColumns().setAll();
+        table.getItems().addAll(data);
+        //table.getColumns().addAll(itemTitle, itemPrice, itemURL,itemDate);
+
     }
+	
 
 }
+
+	
+
 
