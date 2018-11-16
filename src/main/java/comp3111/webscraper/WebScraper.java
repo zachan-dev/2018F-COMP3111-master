@@ -7,7 +7,8 @@ import com.gargoylesoftware.htmlunit.WebClient;
 import com.gargoylesoftware.htmlunit.html.HtmlAnchor;
 import com.gargoylesoftware.htmlunit.html.HtmlElement;
 import com.gargoylesoftware.htmlunit.html.HtmlPage;
-import java.util.Vector;import java.util.Collections;
+import java.util.Vector;
+import java.util.Collections;
 
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
@@ -92,50 +93,46 @@ public class WebScraper {
 	 * @return A list of Item that has found. A zero size list is return if nothing is found. Null if any exception (e.g. no connectivity)
 	 */
 	public List<Item> scrape(String keyword) {
-		
-		
+
+
 		try {
 			Vector<Item> result = new Vector<Item>();
-			
-			do {
-				int scrappingPage = Controller.pages + 1;
-				System.out.println("Scrapping page number " + scrappingPage);
-				
-				String searchUrl = DEFAULT_URL + "search/sss?s=" + Controller.pages + "&sort=rel&query=" + URLEncoder.encode(keyword, "UTF-8");
-				
-				HtmlPage page = client.getPage(searchUrl);
-			
-				List<?> items = (List<?>) page.getByXPath("//li[@class='result-row']");
-			
-				for (int i = 0; i < items.size(); i++) {
-					HtmlElement htmlItem = (HtmlElement) items.get(i);
-					HtmlAnchor itemAnchor = ((HtmlAnchor) htmlItem.getFirstByXPath(".//p[@class='result-info']/a"));
-					HtmlElement spanPrice = ((HtmlElement) htmlItem.getFirstByXPath(".//a/span[@class='result-price']"));
-					HtmlElement spanDate = ((HtmlElement) htmlItem.getFirstByXPath(".//time[@class='result-date']"));
 
-					// It is possible that an item doesn't have any price, we set the price to 0.0
-					// in this case
-					String itemPrice = spanPrice == null ? "0.0" : spanPrice.asText();
-					//String itemDate = spanDate.asText();
-					String itemDate = spanDate.getAttribute("datetime");
 
-					Item item = new Item();
-					item.setTitle(itemAnchor.asText());
-					item.setUrl(itemAnchor.getHrefAttribute());
 
-					item.setPrice(new Double(itemPrice.replace("$", "")));
-					item.setDate(itemDate);
+			String searchUrl = DEFAULT_URL + "search/sss?s=" + "&sort=rel&query=" + URLEncoder.encode(keyword, "UTF-8");
 
-					result.add(item);
-				}
-				
-				if (items.size() != 0) Controller.pages ++;
-				
-				Controller.size += items.size();
-				
-			} while (Controller.size % 120 == 0 && Controller.size != 0);
+			HtmlPage page = client.getPage(searchUrl);
+
+			List<?> items = (List<?>) page.getByXPath("//li[@class='result-row']");
+
+			for (int i = 0; i < items.size(); i++) {
+				HtmlElement htmlItem = (HtmlElement) items.get(i);
+				HtmlAnchor itemAnchor = ((HtmlAnchor) htmlItem.getFirstByXPath(".//p[@class='result-info']/a"));
+				HtmlElement spanPrice = ((HtmlElement) htmlItem.getFirstByXPath(".//a/span[@class='result-price']"));
+				HtmlElement spanDate = ((HtmlElement) htmlItem.getFirstByXPath(".//time[@class='result-date']"));
+
+				// It is possible that an item doesn't have any price, we set the price to 0.0
+				// in this case
+				String itemPrice = spanPrice == null ? "0.0" : spanPrice.asText();
+				//String itemDate = spanDate.asText();
+				String itemDate = spanDate.getAttribute("datetime");
+
+				Item item = new Item();
+				item.setTitle(itemAnchor.asText());
+				item.setUrl(itemAnchor.getHrefAttribute());
+
+				item.setPrice(new Double(itemPrice.replace("$", "")));
+				item.setDate(itemDate);
+				item.setPortal("Craigslist");
+
+				result.add(item);
+			}
+
+
+
 			
-			client.close();
+
 			String searchUrl1 = DEFAULT_URL1 + "search?keyword=" + URLEncoder.encode(keyword, "UTF-8");
 			Document doc = Jsoup.connect(searchUrl1).get();
 			Elements ele=doc.select("li.search-result");
@@ -157,13 +154,14 @@ public class WebScraper {
 				item.setPortal("Preloved");
 				item.setUrl(link);
 				item.setPrice(new Double(price));
+				item.setDate("-");
 				result.add(item);				
 				}
-			
+
 			Collections.sort(result);	
 			this.result=result;
-			
-			
+
+			client.close();
 			return result;
 		} catch (Exception e) {
 			System.out.println(e);
