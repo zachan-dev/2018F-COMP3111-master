@@ -97,67 +97,85 @@ public class WebScraper {
 
 		try {
 			Vector<Item> result = new Vector<Item>();
-
-
-
-			String searchUrl = DEFAULT_URL + "search/sss?s=" + "&sort=rel&query=" + URLEncoder.encode(keyword, "UTF-8");
-
-			HtmlPage page = client.getPage(searchUrl);
-
-			List<?> items = (List<?>) page.getByXPath("//li[@class='result-row']");
-
-			for (int i = 0; i < items.size(); i++) {
-				HtmlElement htmlItem = (HtmlElement) items.get(i);
-				HtmlAnchor itemAnchor = ((HtmlAnchor) htmlItem.getFirstByXPath(".//p[@class='result-info']/a"));
-				HtmlElement spanPrice = ((HtmlElement) htmlItem.getFirstByXPath(".//a/span[@class='result-price']"));
-				HtmlElement spanDate = ((HtmlElement) htmlItem.getFirstByXPath(".//time[@class='result-date']"));
-
-				// It is possible that an item doesn't have any price, we set the price to 0.0
-				// in this case
-				String itemPrice = spanPrice == null ? "0.0" : spanPrice.asText();
-				//String itemDate = spanDate.asText();
-				String itemDate = spanDate.getAttribute("datetime");
-
-				Item item = new Item();
-				item.setTitle(itemAnchor.asText());
-				item.setUrl(itemAnchor.getHrefAttribute());
-
-				item.setPrice(new Double(itemPrice.replace("$", "")));
-				item.setDate(itemDate);
-				item.setPortal("Craigslist");
-
-				result.add(item);
-			}
-
-
-
 			
+			int noPage = 0;
+			int noItem = 0;
+			System.out.println("Searching in Craigslist...");
+			
+			do {
+				String searchUrl = DEFAULT_URL + "search/sss?s=" + Integer.toString(noPage * 120) + "&sort=rel&amp;query=" + URLEncoder.encode(keyword, "UTF-8") + "&searchNearby=1";
+				HtmlPage page = client.getPage(searchUrl);
+				List<?> items = (List<?>) page.getByXPath("//li[@class='result-row']");
+				noItem = items.size();
 
-			String searchUrl1 = DEFAULT_URL1 + "search?keyword=" + URLEncoder.encode(keyword, "UTF-8");
-			Document doc = Jsoup.connect(searchUrl1).get();
-			Elements ele=doc.select("li.search-result");
-			Elements a=ele.select("li[data-test-element='search-result']");
+				for (int i = 0; i < items.size(); i++) {
+					HtmlElement htmlItem = (HtmlElement) items.get(i);
+					HtmlAnchor itemAnchor = ((HtmlAnchor) htmlItem.getFirstByXPath(".//p[@class='result-info']/a"));
+					HtmlElement spanPrice = ((HtmlElement) htmlItem.getFirstByXPath(".//a/span[@class='result-price']"));
+					HtmlElement spanDate = ((HtmlElement) htmlItem.getFirstByXPath(".//time[@class='result-date']"));
 
-			for (int i = 0; i < a.size(); i++) {
-				String name=a.get(i).select("span[itemprop='name']").text();
-				String price=a.get(i).select("span[itemprop='price']").text();				
-				try {
-				price=price.substring(1,price.length());	
-				price=price.replace(",","");
-				}
-				catch (Exception e) {
-					price="0";
-				}
-				String link=a.get(i).select("a").attr("href");
-				Item item = new Item();
-				item.setTitle(name);
-				item.setPortal("Preloved");
-				item.setUrl(link);
-				item.setPrice(new Double(price));
-				item.setDate("-");
-				result.add(item);				
-				}
+					// It is possible that an item doesn't have any price, we set the price to 0.0
+					// in this case
+					String itemPrice = spanPrice == null ? "0.0" : spanPrice.asText();
+					//String itemDate = spanDate.asText();
+					String itemDate = spanDate.getAttribute("datetime");
 
+					Item item = new Item();
+					item.setTitle(itemAnchor.asText());
+					item.setUrl(itemAnchor.getHrefAttribute());
+
+					item.setPrice(new Double(itemPrice.replace("$", "")));
+					item.setDate(itemDate);
+					item.setPortal("Craigslist");
+
+					result.add(item);
+				}
+				if (noItem != 0) { 
+					noPage++; 
+					Controller.pages++; 
+					System.out.println("Scrapping page number " + Controller.pages + "..."); 
+				}
+				Controller.size += noItem;
+			} while (noItem == 120);
+
+
+			noPage = 1;
+			noItem = 0;
+			System.out.println("Searching in Preloved...");
+			do {
+				String searchUrl1 = DEFAULT_URL1 + "search?keyword=" + URLEncoder.encode(keyword, "UTF-8") + "&page=" + noPage;
+				Document doc = Jsoup.connect(searchUrl1).get();
+				Elements ele=doc.select("li.search-result");
+				Elements a=ele.select("li[data-test-element='search-result']");
+				noItem = a.size();
+
+				for (int i = 0; i < a.size(); i++) {
+					String name=a.get(i).select("span[itemprop='name']").text();
+					String price=a.get(i).select("span[itemprop='price']").text();				
+					try {
+						price=price.substring(1,price.length());	
+						price=price.replace(",","");
+					}
+					catch (Exception e) {
+						price="0";
+					}
+					String link=a.get(i).select("a").attr("href");
+					Item item = new Item();
+					item.setTitle(name);
+					item.setPortal("Preloved");
+					item.setUrl(link);
+					item.setPrice(new Double(price));
+					item.setDate("-");
+					result.add(item);				
+				}
+				if (noItem != 0) { 
+					noPage++;
+					Controller.pages++;
+					System.out.println("Scrapping page number " + Controller.pages + "...");
+				}
+				Controller.size += noItem;
+			} while (noItem == 20 && noPage < 100);
+			
 			Collections.sort(result);	
 			this.result=result;
 
