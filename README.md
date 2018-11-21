@@ -1,4 +1,21 @@
 # COMP3111: Software Engineering Project - Webscrapper
+
+## Development Team 34 Member List and Assignment
+> **CHANG, Hiu Tung / Hilda**
+> Basic Task no. 1 and 4
+> ITSC: htchang
+> Github: htchang
+>
+> **LEE, Yuen Nam / Heidi**
+> Basic Task no. 2 and 5
+> ITSC: ynleeaa
+> Github: heidileeyn
+>
+> **CHAN, Siu Him / Zach**
+> Basic Task no. 3 and 6
+> ITSC: shchanam
+> Github: zach1king
+
 ## Project Problem Statement and Activities
 
 
