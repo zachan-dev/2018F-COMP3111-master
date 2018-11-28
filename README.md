@@ -16,6 +16,10 @@
 > ITSC: shchanam
 > Github: zach1king
 
+## Important Notes
+
+For `Basic Task 3`, instead of writing to the `Console` tab to show how many pages has already been scraped during the process, the message is written using `System.out,println()` and shown on the system console intead of the application `Console` tab, so as to replace the use of a new thread.
+
 ## Project Problem Statement and Activities
 
 
