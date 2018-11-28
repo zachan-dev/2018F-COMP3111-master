@@ -4,6 +4,8 @@
 package comp3111.webscraper;
 
 
+import javafx.beans.binding.Bindings;
+import javafx.beans.binding.BooleanBinding;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -100,8 +102,7 @@ public class Controller extends WebScraperApplication{
 	  */
 	 @FXML
 	 private void initialize() {
-		 lastSearch.setDisable(true);
-		 RefineButton.setDisable(true);
+		 initProgram();
 	 }
 
 	 /**
@@ -110,24 +111,7 @@ public class Controller extends WebScraperApplication{
 	  */
 	 @FXML
 	 private void actionSearch() throws ParseException {
-		 lastKeyword = latestKeyword;
-		 latestKeyword = textFieldKeyword.getText();
-		 if (lastKeyword != "") {
-			 System.out.println("lastSearch enabled");
-			 lastSearch.setDisable(false);
-		 }
-
-		 System.out.println("actionSearch: " + textFieldKeyword.getText());
-		 List<Item> result = scraper.scrape(textFieldKeyword.getText());
-		 String output = "Total items scrapped = " + size + ".\t" + "Total pages obtained = " + pages + ".\n\n";
-		 for (Item item : result) {
-			 output += item.getTitle() + "\t" + item.getPortal() + "\t" + item.getPrice() + "\t" + item.getUrl() + "\t" + item.getDate() + "\n";
-		 }
-		 textAreaConsole.setText(output);
-		 RefineButton.setDisable(false);
-		 size = 0;
-		 pages = 0;
-
+		 List <Item> result = search();
 		 summary(result);
 		 fillTable(result);
 
@@ -155,43 +139,30 @@ public class Controller extends WebScraperApplication{
 	  */
 	 @FXML
 	 private void actionLast() throws ParseException {
+		 System.out.println("actionLast");
+		 last();
 		 if (lastKeyword != "") {
-			 textFieldKeyword.setText(lastKeyword);
 			 actionSearch();
 		 }
-
-		 System.out.println("actionLast");
 	 }
 
 	 @FXML
 	 private void actionAbout() {
-		 Alert dg = new Alert(Alert.AlertType.INFORMATION);
-		 dg.setTitle("About the team");
-		 dg.setHeaderText("COMP3111 Project Team No. 34");
-		 dg.setContentText("Developers Info: "
-				 + "\n CHAN, Siu Him\t ITSC: shchanam\t GitHub: https://github.com/zach1king"
-				 + "\n CHANG, Hiu Tung\t ITSC: htchang\t Github: https://github.com/htchang1"
-				 + "\n LEE, Yuen Nam\t ITSC: ynleeaa\t Github: https://github.com/heidileeyn");
+		 System.out.println("actionAbout");
+		 Alert dg = dialogAbout();
 		 dg.show();
 	 }
 
 	 @FXML
 	 private void actionQuit() {
-		 System.exit(0);
+		 System.out.println("actionQuit");
+		 quit();
 	 }
 
 	 @FXML
 	 private void actionClose() {
-		 lastKeyword = "";
-		 latestKeyword = "";
-		 lastSearch.setDisable(true);
-		 textFieldKeyword.setText("");
-		 textAreaConsole.setText("");
-		 labelCount.setText("<total>");
-		 labelPrice.setText("<AvgPrice>");
-		 labelMin.setText("<Lowest>");
-		 labelLatest.setText("<Latest>");
-		 table.getItems().clear();
+		 System.out.println("actionClose");
+		 close();
 	 }
 
 	 @FXML
@@ -202,6 +173,33 @@ public class Controller extends WebScraperApplication{
 	 @FXML
 	 private void actionLatest() {
 		 getHostServices().showDocument(labelLatest.getText());
+	 }
+	 
+	 private void initProgram() {
+		 lastSearch.setDisable(true);
+		 RefineButton.setDisable(true);
+	 }
+	 
+	 public List<Item> search() {
+		 lastKeyword = latestKeyword;
+		 latestKeyword = textFieldKeyword.getText();
+		 if (lastKeyword != "") {
+			 System.out.println("lastSearch enabled");
+			 lastSearch.setDisable(false);
+		 }
+
+		 System.out.println("actionSearch: " + textFieldKeyword.getText());
+		 List<Item> result = scraper.scrape(textFieldKeyword.getText());
+		 String output = "Total items scrapped = " + size + ".\t" + "Total pages obtained = " + pages + ".\n\n";
+		 for (Item item : result) {
+			 output += item.getTitle() + "\t" + item.getPortal() + "\t" + item.getPrice() + "\t" + item.getUrl() + "\t" + item.getDate() + "\n";
+		 }
+		 textAreaConsole.setText(output);
+		 RefineButton.setDisable(false);
+		 size = 0;
+		 pages = 0;
+		 
+		 return result;
 	 }
 	 
 	 private void summary(List<Item> result) throws ParseException {
@@ -247,7 +245,6 @@ public class Controller extends WebScraperApplication{
 	 }
 
 
-
 	 private void fillTable (List<Item> result) {
 		 table.getItems().clear();
 		 itemTitle.setCellValueFactory(new PropertyValueFactory<TableItem, String>("title"));
@@ -276,7 +273,61 @@ public class Controller extends WebScraperApplication{
 		 //table.getColumns().addAll(itemTitle, itemPrice, itemURL,itemDate);
 
 	 }
+	 
+	 public Alert dialogAbout() {
+		 Alert dg = new Alert(Alert.AlertType.INFORMATION);
+		 dg.setTitle("About the team");
+		 dg.setHeaderText("COMP3111 Project Team No. 34");
+		 dg.setContentText("Developers Info: "
+				 + "\n CHAN, Siu Him\t ITSC: shchanam\t GitHub: https://github.com/zach1king"
+				 + "\n CHANG, Hiu Tung\t ITSC: htchang\t Github: https://github.com/htchang1"
+				 + "\n LEE, Yuen Nam\t ITSC: ynleeaa\t Github: https://github.com/heidileeyn");
+		 return dg;
+	 }
+	 
+	 public void last() {
+		 lastSearch.setDisable(true);
+		 
+		 if (lastKeyword != "") {
+			 textFieldKeyword.setText(lastKeyword);
+		 }
+	 }
+	 
+	 public void quit() {
+		 scraper.close();
+		 System.exit(0);
+	 }
 
+	 public void close() {
+		 lastKeyword = "";
+		 latestKeyword = "";
+		 lastSearch.setDisable(true);
+		 textFieldKeyword.setText("");
+		 textAreaConsole.setText("");
+		 labelCount.setText("<total>");
+		 labelPrice.setText("<AvgPrice>");
+		 labelMin.setText("<Lowest>");
+		 labelLatest.setText("<Latest>");
+		 table.getItems().clear();
+	 }
+	 
+	 public boolean getStatus_isDisabledLastSearch() {
+		 return lastSearch.isDisable();
+	 }
+	 
+	 public String getTextFieldKeyword() { return textFieldKeyword.getText(); }
+	 
+	 public String getTextAreaConsole() { return textAreaConsole.getText(); }
+	 
+	 public String getLabelCount() { return labelCount.getText(); }
+	 
+	 public String getLabelPrice() { return labelPrice.getText(); }
+	 
+	 public String getLabelMin() { return labelMin.getText(); }
+	 
+	 public String getLabelLatest() { return labelLatest.getText(); }
+	 
+	 public boolean isTableClean() { return Bindings.isEmpty(table.getItems()).get(); }
 
 }
 
