@@ -93,7 +93,8 @@ public class WebScraper {
 	 * @return A list of Item that has found. A zero size list is return if nothing is found. Null if any exception (e.g. no connectivity)
 	 */
 	public List<Item> scrape(String keyword) {
-
+		
+		if (keyword == "" || keyword == " " || keyword.contains("  ")) { return null; }
 
 		try {
 			Vector<Item> result = new Vector<Item>();
@@ -136,6 +137,7 @@ public class WebScraper {
 					System.out.println("Scrapping page number " + Controller.pages + "..."); 
 				}
 				Controller.size += noItem;
+				
 			} while (noItem == 120);
 
 
@@ -174,11 +176,11 @@ public class WebScraper {
 					System.out.println("Scrapping page number " + Controller.pages + "...");
 				}
 				Controller.size += noItem;
+				
 			} while (noItem == 20 && noPage < 100);
 			
 			Collections.sort(result);	
 			this.result=result;
-
 			client.close();
 			return result;
 		} catch (Exception e) {
@@ -198,4 +200,9 @@ public class WebScraper {
 		}		
 		return refine;
 	}
+	
+	public void close() {
+		client.close();
+	}
+	
 }
