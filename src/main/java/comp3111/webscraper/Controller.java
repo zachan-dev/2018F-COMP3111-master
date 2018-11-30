@@ -1,7 +1,9 @@
+/**
+ * 
+ */
 package comp3111.webscraper;
 
 
-import javafx.beans.binding.Bindings;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -26,7 +28,7 @@ import java.util.List;
 
 
 /**
- * Controller class handles GUI interactions by using JavaFX.
+ * 
  * @author kevinw
  *
  *
@@ -80,22 +82,10 @@ public class Controller extends WebScraperApplication{
 
 
 	private WebScraper scraper;
-	
-	/**
-	 * global variable for storing no. of items scrapped
-	 */
+
 	public static int size = 0;
-	/**
-	 * global variable for storing no. of pages scrapped
-	 */
 	public static int pages = 0;
-	/**
-	 * global variable for storing last keyword had scrapped
-	 */
 	public static String lastKeyword = "";
-	/**
-	 * global variable for storing latest keyword being scrapped
-	 */
 	public static String latestKeyword = "";
 
 	/**
@@ -110,7 +100,8 @@ public class Controller extends WebScraperApplication{
 	  */
 	 @FXML
 	 private void initialize() {
-		 initProgram();
+		 lastSearch.setDisable(true);
+		 RefineButton.setDisable(true);
 	 }
 
 	 /**
@@ -119,7 +110,24 @@ public class Controller extends WebScraperApplication{
 	  */
 	 @FXML
 	 private void actionSearch() throws ParseException {
-		 List <Item> result = search();
+		 lastKeyword = latestKeyword;
+		 latestKeyword = textFieldKeyword.getText();
+		 if (lastKeyword != "") {
+			 System.out.println("lastSearch enabled");
+			 lastSearch.setDisable(false);
+		 }
+
+		 System.out.println("actionSearch: " + textFieldKeyword.getText());
+		 List<Item> result = scraper.scrape(textFieldKeyword.getText());
+		 String output = "Total items scrapped = " + size + ".\t" + "Total pages obtained = " + pages + ".\n\n";
+		 for (Item item : result) {
+			 output += item.getTitle() + "\t" + item.getPortal() + "\t" + item.getPrice() + "\t" + item.getUrl() + "\t" + item.getDate() + "\n";
+		 }
+		 textAreaConsole.setText(output);
+		 RefineButton.setDisable(false);
+		 size = 0;
+		 pages = 0;
+
 		 summary(result);
 		 fillTable(result);
 
@@ -142,109 +150,78 @@ public class Controller extends WebScraperApplication{
 		 fillTable(refine);
 		 
 	 }
-	 
+	 /**
+	  * Called when the new button is pressed. Very dummy action - print something in the command prompt.
+	  */
 	 @FXML
 	 private void actionLast() throws ParseException {
-		 System.out.println("actionLast");
-		 last();
 		 if (lastKeyword != "") {
+			 textFieldKeyword.setText(lastKeyword);
 			 actionSearch();
 		 }
+
+		 System.out.println("actionLast");
 	 }
 
 	 @FXML
 	 private void actionAbout() {
-		 System.out.println("actionAbout");
-		 Alert dg = dialogAbout();
+		 Alert dg = new Alert(Alert.AlertType.INFORMATION);
+		 dg.setTitle("About the team");
+		 dg.setHeaderText("COMP3111 Project Team No. 34");
+		 dg.setContentText("Developers Info: "
+				 + "\n CHAN, Siu Him\t ITSC: shchanam\t GitHub: https://github.com/zach1king"
+				 + "\n CHANG, Hiu Tung\t ITSC: htchang\t Github: https://github.com/htchang1"
+				 + "\n LEE, Yuen Nam\t ITSC: ynleeaa\t Github: https://github.com/heidileeyn");
 		 dg.show();
 	 }
 
+	 
 	 @FXML
 	 private void actionQuit() {
-		 System.out.println("actionQuit");
-		 quit();
+		 System.exit(0);
 	 }
 
 	 @FXML
 	 private void actionClose() {
-		 System.out.println("actionClose");
-		 close();
+		 lastKeyword = "";
+		 latestKeyword = "";
+		 lastSearch.setDisable(true);
+		 textFieldKeyword.setText("");
+		 textAreaConsole.setText("");
+		 labelCount.setText("<total>");
+		 labelPrice.setText("<AvgPrice>");
+		 labelMin.setText("<Lowest>");
+		 labelLatest.setText("<Latest>");
+		 table.getItems().clear();
 	 }
-
+	 /**
+	  * Open the Url in browser when clicked
+	  */
 	 @FXML
 	 private void actionLowest() {
 		 getHostServices().showDocument(labelMin.getText());
 	 }
-	 
+	 /**
+	  * Open the Url in browser when clicked
+	  */
 	 @FXML
 	 private void actionLatest() {
 		 getHostServices().showDocument(labelLatest.getText());
 	 }
 	 
-	 private void initProgram() {
-		 lastSearch.setDisable(true);
-		 RefineButton.setDisable(true);
-	 }
-	 
 	 /**
-	  * Search the keyword from textField in the Internet
-	  * Call scrape(string) function in WebScrapper
-	  * @return a list of items searched using the keyword in textField
+	  * Called in Search and Refine Search
+	  * Set the value of textfields in Summary tab
+	  * @param result -- a list items from search result
+	  * @throws ParseException
 	  */
-	 public List<Item> search() {
-		 lastKeyword = latestKeyword;
-		 latestKeyword = textFieldKeyword.getText();
-		 if (lastKeyword != "") {
-			 System.out.println("lastSearch enabled");
-			 lastSearch.setDisable(false);
-		 }
-
-		 System.out.println("actionSearch: " + textFieldKeyword.getText());
-		 List<Item> result = scraper.scrape(textFieldKeyword.getText());
-		 String output = "Total items scrapped = " + size + ".\t" + "Total pages obtained = " + pages + ".\n\n";
-		 for (Item item : result) {
-			 output += item.getTitle() + "\t" + item.getPortal() + "\t" + item.getPrice() + "\t" + item.getUrl() + "\t" + item.getDate() + "\n";
-		 }
-		 textAreaConsole.setText(output);
-		 RefineButton.setDisable(false);
-		 size = 0;
-		 pages = 0;
-		 
-		 return result;
-	 }
-	 
 	 private void summary(List<Item> result) throws ParseException {
 		 if(result.size() > 0) {
-			 double sum=0;
-			 int count=0;
-			 double min= Double.POSITIVE_INFINITY;
-			 String urlMin = "";
-			 SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm");
-			 Date latest = simpleDateFormat.parse("0000-00-00 00:00");
-			 String urlLatest = "";
-
-			 labelCount.setText(Integer.toString(result.size()));
-			 for(Item item : result) {
-				 sum += item.getPrice();
-				 if(item.getPrice()>0.0) {
-					 count++;
-					 if(item.getPrice()<min) {
-						 min = item.getPrice();
-						 urlMin = item.getUrl();
-					 }
-
-				 }
-				 if(item.getDate() != "-") {
-					 if(simpleDateFormat.parse(item.getDate()).after(latest)) {
-						 latest = simpleDateFormat.parse(item.getDate());
-						 urlLatest = item.getUrl();
-					 }
-				 }
-			 }
-
-			 labelPrice.setText(String.format("%f", (float)sum/count));
-			 labelMin.setText(urlMin);
-			 labelLatest.setText(urlLatest);
+			 labelCount.setText(count(result));
+			 labelPrice.setText(avg(result));
+			 labelMin.setText(cheapest(result));
+			 labelLatest.setText(latest(result));
+			
 
 		 }else {
 			 labelCount.setText("0");
@@ -254,6 +231,59 @@ public class Controller extends WebScraperApplication{
 		 }
 
 	 }
+	 public String count (List<Item>result) {
+		 return Integer.toString(result.size());
+	 }
+	 
+	 public String latest (List<Item>result) throws ParseException {
+		 String urlLatest = "";
+		 SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm");
+		 Date latest = simpleDateFormat.parse("0000-00-00 00:00");
+		 for(Item item : result) {
+			 if(item.getDate() != "-") {
+				 if(simpleDateFormat.parse(item.getDate()).after(latest)) {
+					 latest = simpleDateFormat.parse(item.getDate());
+					 urlLatest = item.getUrl();
+				 }
+			 }
+		 }
+		 return urlLatest;
+	 }
+	 public String avg (List<Item>result) {
+		 double sum=0;
+		 int count=0;
+		 for(Item item : result) {
+			 sum += item.getPrice();
+			 if(item.getPrice()>0.0) {
+				 count++;
+			 }
+		 }
+		 return Double.toString((double)sum/count);
+		 
+	 }
+
+	 public String cheapest (List<Item>result) {
+		 double min= Double.POSITIVE_INFINITY;
+		 String urlMin = "";
+		 for (Item item: result) {
+			 if(item.getDate() != "-") {
+				 if(item.getPrice()>0.0) {
+					 if(item.getPrice()<min) {
+						 min = item.getPrice();
+						 urlMin = item.getUrl();
+					 }
+				 }
+			 }
+		 }
+		 return urlMin;
+	 }
+
+	 
+	 /**
+	  * Called in Search and Refined Search
+	  * Fill the content accordingly in Table tab
+	  * @param result -- a list of items of the search result
+	  */
 
 
 	 private void fillTable (List<Item> result) {
@@ -284,110 +314,9 @@ public class Controller extends WebScraperApplication{
 		 //table.getColumns().addAll(itemTitle, itemPrice, itemURL,itemDate);
 
 	 }
-	 
-	 /**
-	  * Set an Alert dialog object "About the team"
-	  * @return Alert dialog object "About the team"
-	  */
-	 public Alert dialogAbout() {
-		 Alert dg = new Alert(Alert.AlertType.INFORMATION);
-		 dg.setTitle("About the team");
-		 dg.setHeaderText("COMP3111 Project Team No. 34");
-		 dg.setContentText("Developers Info: "
-				 + "\n CHAN, Siu Him\t ITSC: shchanam\t GitHub: https://github.com/zach1king"
-				 + "\n CHANG, Hiu Tung\t ITSC: htchang\t Github: https://github.com/htchang1"
-				 + "\n LEE, Yuen Nam\t ITSC: ynleeaa\t Github: https://github.com/heidileeyn");
-		 return dg;
-	 }
-	 
-	 /**
-	  * Called when the LastSearch Button is pressed
-	  * Will disable LastSearch Button and clear the last keyword stored
-	  * Will clear input text field
-	  */
-	 public void last() {
-		 lastSearch.setDisable(true);
-		 
-		 if (lastKeyword != "") {
-			 textFieldKeyword.setText(lastKeyword);
-		 }
-	 }
-	 
-	 /**
-	  * Called when the Quit Button is pressed
-	  * Call close() function and then exit the program with code 0
-	  */
-	 public void quit() {
-		 scraper.close();
-		 System.exit(0);
-	 }
 
-	 /**
-	  * Called when the Close Button or Quit Button is pressed
-	  * Initialize everything in UI back to initial state
-	  */
-	 public void close() {
-		 lastKeyword = "";
-		 latestKeyword = "";
-		 lastSearch.setDisable(true);
-		 textFieldKeyword.setText("");
-		 textAreaConsole.setText("");
-		 labelCount.setText("<total>");
-		 labelPrice.setText("<AvgPrice>");
-		 labelMin.setText("<Lowest>");
-		 labelLatest.setText("<Latest>");
-		 table.getItems().clear();
-	 }
 	 
-	 /**
-	  * Get status of disability of Last Search Button
-	  * @return true if lastSearch Button is disabled
-	  */
-	 public boolean getStatus_isDisabledLastSearch() {
-		 return lastSearch.isDisable();
-	 }
-	 
-	 /**
-	  * Get keyword from TextField
-	  * @return string keyword in TextField
-	  */
-	 public String getTextFieldKeyword() { return textFieldKeyword.getText(); }
-	 
-	 /**
-	  * Get words from TextAreaConsole
-	  * @return string in TextAreaConsole
-	  */
-	 public String getTextAreaConsole() { return textAreaConsole.getText(); }
-	 
-	 /**
-	  * Get words from LabelCount
-	  * @return string in LabelCount
-	  */
-	 public String getLabelCount() { return labelCount.getText(); }
-	 
-	 /**
-	  * Get words from LabelPrice
-	  * @return string in LabelPrice
-	  */
-	 public String getLabelPrice() { return labelPrice.getText(); }
-	 
-	 /**
-	  * Get words from LabelMin
-	  * @return string in LabelMin
-	  */
-	 public String getLabelMin() { return labelMin.getText(); }
-	 
-	 /**
-	  * Get words from LabelLatest
-	  * @return string in LabelLatest
-	  */
-	 public String getLabelLatest() { return labelLatest.getText(); }
-	 
-	 /**
-	  * Function to check whether the table is cleared or not
-	  * @return true if the table is empty
-	  */
-	 public boolean isTableClean() { return Bindings.isEmpty(table.getItems()).get(); }
+
 
 }
 
