@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="comp3111.webscraper.ControllerTest" tests="15" skipped="0" failures="15" errors="0" timestamp="2018-11-28T17:13:10" hostname="Zach-Mac.local" time="12.458">
+<testsuite name="comp3111.webscraper.ControllerTest" tests="15" skipped="0" failures="15" errors="0" timestamp="2018-11-30T14:19:20" hostname="Zach-Mac.local" time="13.507">
   <properties/>
-  <testcase name="testAboutContent" classname="comp3111.webscraper.ControllerTest" time="5.383">
+  <testcase name="testAboutContent" classname="comp3111.webscraper.ControllerTest" time="6.411">
     <failure message="java.lang.IllegalStateException: Not on FX application thread; currentThread = Test worker" type="java.lang.IllegalStateException">java.lang.IllegalStateException: Not on FX application thread; currentThread = Test worker
 	at javafx.graphics/com.sun.javafx.tk.Toolkit.checkFxUserThread(Toolkit.java:291)
 	at javafx.graphics/com.sun.javafx.tk.quantum.QuantumToolkit.checkFxUserThread(QuantumToolkit.java:423)
@@ -12,7 +12,7 @@
 	at javafx.controls/javafx.scene.control.Dialog.&lt;init&gt;(Dialog.java:263)
 	at javafx.controls/javafx.scene.control.Alert.&lt;init&gt;(Alert.java:245)
 	at javafx.controls/javafx.scene.control.Alert.&lt;init&gt;(Alert.java:220)
-	at comp3111.webscraper.Controller.dialogAbout(Controller.java:277)
+	at comp3111.webscraper.Controller.dialogAbout(Controller.java:293)
 	at comp3111.webscraper.ControllerTest.testAboutContent(ControllerTest.java:61)
 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
@@ -64,9 +64,9 @@
 	at java.base/java.lang.Thread.run(Thread.java:844)
 </failure>
   </testcase>
-  <testcase name="testSearchByStatus_isDisabledLastSearch" classname="comp3111.webscraper.ControllerTest" time="0.503">
+  <testcase name="testSearchByStatus_isDisabledLastSearch" classname="comp3111.webscraper.ControllerTest" time="0.51">
     <failure message="java.lang.NullPointerException" type="java.lang.NullPointerException">java.lang.NullPointerException
-	at comp3111.webscraper.Controller.search(Controller.java:184)
+	at comp3111.webscraper.Controller.search(Controller.java:196)
 	at comp3111.webscraper.ControllerTest.testSearchByStatus_isDisabledLastSearch(ControllerTest.java:86)
 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
@@ -118,9 +118,9 @@
 	at java.base/java.lang.Thread.run(Thread.java:844)
 </failure>
   </testcase>
-  <testcase name="testCloseByLabelCount" classname="comp3111.webscraper.ControllerTest" time="0.502">
+  <testcase name="testCloseByLabelCount" classname="comp3111.webscraper.ControllerTest" time="0.506">
     <failure message="java.lang.NullPointerException" type="java.lang.NullPointerException">java.lang.NullPointerException
-	at comp3111.webscraper.Controller.close(Controller.java:303)
+	at comp3111.webscraper.Controller.close(Controller.java:332)
 	at comp3111.webscraper.ControllerTest.testCloseByLabelCount(ControllerTest.java:107)
 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
@@ -172,9 +172,9 @@
 	at java.base/java.lang.Thread.run(Thread.java:844)
 </failure>
   </testcase>
-  <testcase name="testCloseByLabelPrice" classname="comp3111.webscraper.ControllerTest" time="0.504">
+  <testcase name="testCloseByLabelPrice" classname="comp3111.webscraper.ControllerTest" time="0.502">
     <failure message="java.lang.NullPointerException" type="java.lang.NullPointerException">java.lang.NullPointerException
-	at comp3111.webscraper.Controller.close(Controller.java:303)
+	at comp3111.webscraper.Controller.close(Controller.java:332)
 	at comp3111.webscraper.ControllerTest.testCloseByLabelPrice(ControllerTest.java:114)
 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
@@ -226,7 +226,7 @@
 	at java.base/java.lang.Thread.run(Thread.java:844)
 </failure>
   </testcase>
-  <testcase name="testAboutAlertType" classname="comp3111.webscraper.ControllerTest" time="0.52">
+  <testcase name="testAboutAlertType" classname="comp3111.webscraper.ControllerTest" time="0.505">
     <failure message="java.lang.IllegalStateException: Not on FX application thread; currentThread = Test worker" type="java.lang.IllegalStateException">java.lang.IllegalStateException: Not on FX application thread; currentThread = Test worker
 	at javafx.graphics/com.sun.javafx.tk.Toolkit.checkFxUserThread(Toolkit.java:291)
 	at javafx.graphics/com.sun.javafx.tk.quantum.QuantumToolkit.checkFxUserThread(QuantumToolkit.java:423)
@@ -237,7 +237,7 @@
 	at javafx.controls/javafx.scene.control.Dialog.&lt;init&gt;(Dialog.java:263)
 	at javafx.controls/javafx.scene.control.Alert.&lt;init&gt;(Alert.java:245)
 	at javafx.controls/javafx.scene.control.Alert.&lt;init&gt;(Alert.java:220)
-	at comp3111.webscraper.Controller.dialogAbout(Controller.java:277)
+	at comp3111.webscraper.Controller.dialogAbout(Controller.java:293)
 	at comp3111.webscraper.ControllerTest.testAboutAlertType(ControllerTest.java:40)
 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
@@ -291,7 +291,7 @@
   </testcase>
   <testcase name="testCloseByStatus_isDisabledLastSearch" classname="comp3111.webscraper.ControllerTest" time="0.502">
     <failure message="java.lang.NullPointerException" type="java.lang.NullPointerException">java.lang.NullPointerException
-	at comp3111.webscraper.Controller.close(Controller.java:303)
+	at comp3111.webscraper.Controller.close(Controller.java:332)
 	at comp3111.webscraper.ControllerTest.testCloseByStatus_isDisabledLastSearch(ControllerTest.java:71)
 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
@@ -343,7 +343,7 @@
 	at java.base/java.lang.Thread.run(Thread.java:844)
 </failure>
   </testcase>
-  <testcase name="testAboutHeader" classname="comp3111.webscraper.ControllerTest" time="0.504">
+  <testcase name="testAboutHeader" classname="comp3111.webscraper.ControllerTest" time="0.505">
     <failure message="java.lang.IllegalStateException: Not on FX application thread; currentThread = Test worker" type="java.lang.IllegalStateException">java.lang.IllegalStateException: Not on FX application thread; currentThread = Test worker
 	at javafx.graphics/com.sun.javafx.tk.Toolkit.checkFxUserThread(Toolkit.java:291)
 	at javafx.graphics/com.sun.javafx.tk.quantum.QuantumToolkit.checkFxUserThread(QuantumToolkit.java:423)
@@ -354,7 +354,7 @@
 	at javafx.controls/javafx.scene.control.Dialog.&lt;init&gt;(Dialog.java:263)
 	at javafx.controls/javafx.scene.control.Alert.&lt;init&gt;(Alert.java:245)
 	at javafx.controls/javafx.scene.control.Alert.&lt;init&gt;(Alert.java:220)
-	at comp3111.webscraper.Controller.dialogAbout(Controller.java:277)
+	at comp3111.webscraper.Controller.dialogAbout(Controller.java:293)
 	at comp3111.webscraper.ControllerTest.testAboutHeader(ControllerTest.java:54)
 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
@@ -408,7 +408,7 @@
   </testcase>
   <testcase name="testCloseByTextAreaConsole" classname="comp3111.webscraper.ControllerTest" time="0.503">
     <failure message="java.lang.NullPointerException" type="java.lang.NullPointerException">java.lang.NullPointerException
-	at comp3111.webscraper.Controller.close(Controller.java:303)
+	at comp3111.webscraper.Controller.close(Controller.java:332)
 	at comp3111.webscraper.ControllerTest.testCloseByTextAreaConsole(ControllerTest.java:100)
 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
@@ -460,9 +460,9 @@
 	at java.base/java.lang.Thread.run(Thread.java:844)
 </failure>
   </testcase>
-  <testcase name="testLastSearchByStatus_isDisabledLastSearch" classname="comp3111.webscraper.ControllerTest" time="0.504">
+  <testcase name="testLastSearchByStatus_isDisabledLastSearch" classname="comp3111.webscraper.ControllerTest" time="0.503">
     <failure message="java.lang.NullPointerException" type="java.lang.NullPointerException">java.lang.NullPointerException
-	at comp3111.webscraper.Controller.last(Controller.java:288)
+	at comp3111.webscraper.Controller.last(Controller.java:309)
 	at comp3111.webscraper.ControllerTest.testLastSearchByStatus_isDisabledLastSearch(ControllerTest.java:78)
 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
@@ -514,7 +514,7 @@
 	at java.base/java.lang.Thread.run(Thread.java:844)
 </failure>
   </testcase>
-  <testcase name="testAboutTitle" classname="comp3111.webscraper.ControllerTest" time="0.504">
+  <testcase name="testAboutTitle" classname="comp3111.webscraper.ControllerTest" time="0.507">
     <failure message="java.lang.IllegalStateException: Not on FX application thread; currentThread = Test worker" type="java.lang.IllegalStateException">java.lang.IllegalStateException: Not on FX application thread; currentThread = Test worker
 	at javafx.graphics/com.sun.javafx.tk.Toolkit.checkFxUserThread(Toolkit.java:291)
 	at javafx.graphics/com.sun.javafx.tk.quantum.QuantumToolkit.checkFxUserThread(QuantumToolkit.java:423)
@@ -525,7 +525,7 @@
 	at javafx.controls/javafx.scene.control.Dialog.&lt;init&gt;(Dialog.java:263)
 	at javafx.controls/javafx.scene.control.Alert.&lt;init&gt;(Alert.java:245)
 	at javafx.controls/javafx.scene.control.Alert.&lt;init&gt;(Alert.java:220)
-	at comp3111.webscraper.Controller.dialogAbout(Controller.java:277)
+	at comp3111.webscraper.Controller.dialogAbout(Controller.java:293)
 	at comp3111.webscraper.ControllerTest.testAboutTitle(ControllerTest.java:47)
 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
@@ -577,9 +577,9 @@
 	at java.base/java.lang.Thread.run(Thread.java:844)
 </failure>
   </testcase>
-  <testcase name="testCloseByTextFieldKeyword" classname="comp3111.webscraper.ControllerTest" time="0.505">
+  <testcase name="testCloseByTextFieldKeyword" classname="comp3111.webscraper.ControllerTest" time="0.502">
     <failure message="java.lang.NullPointerException" type="java.lang.NullPointerException">java.lang.NullPointerException
-	at comp3111.webscraper.Controller.close(Controller.java:303)
+	at comp3111.webscraper.Controller.close(Controller.java:332)
 	at comp3111.webscraper.ControllerTest.testCloseByTextFieldKeyword(ControllerTest.java:93)
 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
@@ -631,9 +631,9 @@
 	at java.base/java.lang.Thread.run(Thread.java:844)
 </failure>
   </testcase>
-  <testcase name="testCloseByLabelMin" classname="comp3111.webscraper.ControllerTest" time="0.505">
+  <testcase name="testCloseByLabelMin" classname="comp3111.webscraper.ControllerTest" time="0.506">
     <failure message="java.lang.NullPointerException" type="java.lang.NullPointerException">java.lang.NullPointerException
-	at comp3111.webscraper.Controller.close(Controller.java:303)
+	at comp3111.webscraper.Controller.close(Controller.java:332)
 	at comp3111.webscraper.ControllerTest.testCloseByLabelMin(ControllerTest.java:121)
 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
@@ -685,9 +685,9 @@
 	at java.base/java.lang.Thread.run(Thread.java:844)
 </failure>
   </testcase>
-  <testcase name="testControllerByInitLastSearchButton" classname="comp3111.webscraper.ControllerTest" time="0.505">
+  <testcase name="testControllerByInitLastSearchButton" classname="comp3111.webscraper.ControllerTest" time="0.507">
     <failure message="java.lang.NullPointerException" type="java.lang.NullPointerException">java.lang.NullPointerException
-	at comp3111.webscraper.Controller.getStatus_isDisabledLastSearch(Controller.java:314)
+	at comp3111.webscraper.Controller.getStatus_isDisabledLastSearch(Controller.java:347)
 	at comp3111.webscraper.ControllerTest.testControllerByInitLastSearchButton(ControllerTest.java:34)
 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
@@ -741,7 +741,7 @@
   </testcase>
   <testcase name="testCloseByTableCleaned" classname="comp3111.webscraper.ControllerTest" time="0.504">
     <failure message="java.lang.NullPointerException" type="java.lang.NullPointerException">java.lang.NullPointerException
-	at comp3111.webscraper.Controller.close(Controller.java:303)
+	at comp3111.webscraper.Controller.close(Controller.java:332)
 	at comp3111.webscraper.ControllerTest.testCloseByTableCleaned(ControllerTest.java:135)
 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
@@ -793,9 +793,9 @@
 	at java.base/java.lang.Thread.run(Thread.java:844)
 </failure>
   </testcase>
-  <testcase name="testCloseByLabelLatest" classname="comp3111.webscraper.ControllerTest" time="0.504">
+  <testcase name="testCloseByLabelLatest" classname="comp3111.webscraper.ControllerTest" time="0.503">
     <failure message="java.lang.NullPointerException" type="java.lang.NullPointerException">java.lang.NullPointerException
-	at comp3111.webscraper.Controller.close(Controller.java:303)
+	at comp3111.webscraper.Controller.close(Controller.java:332)
 	at comp3111.webscraper.ControllerTest.testCloseByLabelLatest(ControllerTest.java:128)
 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
