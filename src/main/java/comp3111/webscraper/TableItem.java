@@ -16,10 +16,10 @@ public class TableItem {
 		this.url = new SimpleStringProperty(url);
 		this.date = new SimpleStringProperty(date);
 	}
-	/*
+	
 	public TableItem() {
-		
-	}*/
+	
+	}
 	
 	
 	public String getTitle() {

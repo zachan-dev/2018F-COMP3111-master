@@ -9,44 +9,6 @@ import org.junit.Test;
 import javafx.scene.control.Alert;
 
 public class ControllerTest {
-	
-	@Test
-	public void testControllerByInitLastSearchButton() {
-		Controller Sys = new Controller();
-		assertTrue(Sys.getStatus_isDisabledLastSearch());
-	}
-	/*
-	@Test
-	public void testAboutAlertType() {
-		Controller Sys = new Controller();
-		Alert dg = Sys.dialogAbout();
-		assertEquals(dg.getAlertType(), Alert.AlertType.INFORMATION);
-	}
-
-	@Test
-	public void testAboutTitle() {
-		Controller Sys = new Controller();
-		Alert dg = Sys.dialogAbout();
-		assertEquals(dg.getTitle(), "About the team");
-	}
-	
-	@Test
-	public void testAboutHeader() {
-		Controller Sys = new Controller();
-		Alert dg = Sys.dialogAbout();
-		assertEquals(dg.getHeaderText(), "COMP3111 Project Team No. 34");
-	}
-	
-	@Test
-	public void testAboutContent() {
-		Controller Sys = new Controller();
-		Alert dg = Sys.dialogAbout();
-		assertEquals(dg.getContentText(), "Developers Info: "
-				 + "\n CHAN, Siu Him\t ITSC: shchanam\t GitHub: https://github.com/zach1king"
-				 + "\n CHANG, Hiu Tung\t ITSC: htchang\t Github: https://github.com/htchang1"
-				 + "\n LEE, Yuen Nam\t ITSC: ynleeaa\t Github: https://github.com/heidileeyn");
-	}
-	*/
 	@Test
 	public void testCloseByStatus_isDisabledLastSearch() {
 		Controller Sys = new Controller();
@@ -117,5 +79,4 @@ public class ControllerTest {
 		Sys.close();
 		assertTrue(Sys.isTableClean());
 	}
-
 }

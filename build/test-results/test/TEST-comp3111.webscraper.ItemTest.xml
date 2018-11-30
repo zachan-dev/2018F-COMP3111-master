@@ -1,7 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="comp3111.webscraper.ItemTest" tests="1" skipped="0" failures="0" errors="0" timestamp="2018-11-28T15:13:17" hostname="Zach-Mac.local" time="0.001">
+<testsuite name="comp3111.webscraper.ItemTest" tests="11" skipped="0" failures="0" errors="0" timestamp="2018-11-29T15:35:48" hostname="DESKTOP-CKGH2IF" time="0.082">
   <properties/>
-  <testcase name="testSetTitle" classname="comp3111.webscraper.ItemTest" time="0.001"/>
+  <testcase name="testGetPrice" classname="comp3111.webscraper.ItemTest" time="0.009"/>
+  <testcase name="testGetTitle" classname="comp3111.webscraper.ItemTest" time="0.0"/>
+  <testcase name="testGetDate" classname="comp3111.webscraper.ItemTest" time="0.0"/>
+  <testcase name="testSetPortal" classname="comp3111.webscraper.ItemTest" time="0.0"/>
+  <testcase name="testGetUrl" classname="comp3111.webscraper.ItemTest" time="0.0"/>
+  <testcase name="testGetPortal" classname="comp3111.webscraper.ItemTest" time="0.0"/>
+  <testcase name="testcompareTo" classname="comp3111.webscraper.ItemTest" time="0.0"/>
+  <testcase name="testSetDate" classname="comp3111.webscraper.ItemTest" time="0.0"/>
+  <testcase name="testSetUrl" classname="comp3111.webscraper.ItemTest" time="0.0"/>
+  <testcase name="testSetPrice" classname="comp3111.webscraper.ItemTest" time="0.0"/>
+  <testcase name="testSetTitle" classname="comp3111.webscraper.ItemTest" time="0.0"/>
   <system-out><![CDATA[]]></system-out>
   <system-err><![CDATA[]]></system-err>
 </testsuite>

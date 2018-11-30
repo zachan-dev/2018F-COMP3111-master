@@ -87,8 +87,7 @@ public class WebScraper {
 	}
 
 	/**
-	 * The only method implemented in this class, to scrape web content from the craigslist
-	 * 
+	 * scrape web content from the craigslist and preloved
 	 * @param keyword - the keyword you want to search
 	 * @return A list of Item that has found. A zero size list is return if nothing is found. Null if any exception (e.g. no connectivity)
 	 */
@@ -188,7 +187,11 @@ public class WebScraper {
 		}
 		return null;
 	}
-
+	/**
+	 * refine search result
+	 * @param keyword - the keyword you want to refine
+	 * @return A list of Item that has refined. A zero size list is return if nothing is found. Null if any exception (e.g. no connectivity)
+	 */
 	public List<Item> refine(String keyword){
 		Vector<Item> refine = new Vector<Item>();
 		for (int i=0;i<this.result.size();i++)
