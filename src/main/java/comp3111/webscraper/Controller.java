@@ -5,7 +5,6 @@ package comp3111.webscraper;
 
 
 import javafx.beans.binding.Bindings;
-import javafx.beans.binding.BooleanBinding;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -180,6 +179,11 @@ public class Controller extends WebScraperApplication{
 		 RefineButton.setDisable(true);
 	 }
 	 
+	 /**
+	  * Search the keyword from textField in the Internet
+	  * Call scrape(string) function in WebScrapper
+	  * @return a list of items searched using the keyword in textField
+	  */
 	 public List<Item> search() {
 		 lastKeyword = latestKeyword;
 		 latestKeyword = textFieldKeyword.getText();
@@ -274,6 +278,10 @@ public class Controller extends WebScraperApplication{
 
 	 }
 	 
+	 /**
+	  * Set an Alert dialog object "About the team"
+	  * @return Alert dialog object "About the team"
+	  */
 	 public Alert dialogAbout() {
 		 Alert dg = new Alert(Alert.AlertType.INFORMATION);
 		 dg.setTitle("About the team");
@@ -285,6 +293,11 @@ public class Controller extends WebScraperApplication{
 		 return dg;
 	 }
 	 
+	 /**
+	  * Called when the LastSearch Button is pressed
+	  * Will disable LastSearch Button and clear the last keyword stored
+	  * Will clear input text field
+	  */
 	 public void last() {
 		 lastSearch.setDisable(true);
 		 
@@ -293,11 +306,19 @@ public class Controller extends WebScraperApplication{
 		 }
 	 }
 	 
+	 /**
+	  * Called when the Quit Button is pressed
+	  * Call close() function and then exit the program with code 0
+	  */
 	 public void quit() {
 		 scraper.close();
 		 System.exit(0);
 	 }
 
+	 /**
+	  * Called when the Close Button or Quit Button is pressed
+	  * Initialize everything in UI back to initial state
+	  */
 	 public void close() {
 		 lastKeyword = "";
 		 latestKeyword = "";
@@ -311,22 +332,56 @@ public class Controller extends WebScraperApplication{
 		 table.getItems().clear();
 	 }
 	 
+	 /**
+	  * Get status of disability of Last Search Button
+	  * @return true if lastSearch Button is disabled
+	  * @return false otherwise
+	  */
 	 public boolean getStatus_isDisabledLastSearch() {
 		 return lastSearch.isDisable();
 	 }
 	 
+	 /**
+	  * Get keyword from TextField
+	  * @return string keyword in TextField
+	  */
 	 public String getTextFieldKeyword() { return textFieldKeyword.getText(); }
 	 
+	 /**
+	  * Get words from TextAreaConsole
+	  * @return string in TextAreaConsole
+	  */
 	 public String getTextAreaConsole() { return textAreaConsole.getText(); }
 	 
+	 /**
+	  * Get words from LabelCount
+	  * @return string in LabelCount
+	  */
 	 public String getLabelCount() { return labelCount.getText(); }
 	 
+	 /**
+	  * Get words from LabelPrice
+	  * @return string in LabelPrice
+	  */
 	 public String getLabelPrice() { return labelPrice.getText(); }
 	 
+	 /**
+	  * Get words from LabelMin
+	  * @return string in LabelMin
+	  */
 	 public String getLabelMin() { return labelMin.getText(); }
 	 
+	 /**
+	  * Get words from LabelLatest
+	  * @return string in LabelLatest
+	  */
 	 public String getLabelLatest() { return labelLatest.getText(); }
 	 
+	 /**
+	  * Function to check whether the table is cleared or not
+	  * @return true if the table is empty
+	  * @return false otherwise
+	  */
 	 public boolean isTableClean() { return Bindings.isEmpty(table.getItems()).get(); }
 
 }
