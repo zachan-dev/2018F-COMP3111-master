@@ -26,7 +26,7 @@ import java.util.List;
 
 
 /**
- * 
+ * Controller class handles GUI interactions by using JavaFX.
  * @author kevinw
  *
  *
@@ -80,10 +80,22 @@ public class Controller extends WebScraperApplication{
 
 
 	private WebScraper scraper;
-
+	
+	/**
+	 * global variable for storing no. of items scrapped
+	 */
 	public static int size = 0;
+	/**
+	 * global variable for storing no. of pages scrapped
+	 */
 	public static int pages = 0;
+	/**
+	 * global variable for storing last keyword had scrapped
+	 */
 	public static String lastKeyword = "";
+	/**
+	 * global variable for storing latest keyword being scrapped
+	 */
 	public static String latestKeyword = "";
 
 	/**
@@ -130,9 +142,7 @@ public class Controller extends WebScraperApplication{
 		 fillTable(refine);
 		 
 	 }
-	 /**
-	  * Called when the new button is pressed. Very dummy action - print something in the command prompt.
-	  */
+	 
 	 @FXML
 	 private void actionLast() throws ParseException {
 		 System.out.println("actionLast");
