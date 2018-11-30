@@ -188,7 +188,7 @@ public class WebScraper {
 		return null;
 	}
 	/**
-	 * refine search result
+	 * refine item from search result
 	 * @param keyword - the keyword you want to refine
 	 * @return A list of Item that has refined. A zero size list is return if nothing is found. Null if any exception (e.g. no connectivity)
 	 */
