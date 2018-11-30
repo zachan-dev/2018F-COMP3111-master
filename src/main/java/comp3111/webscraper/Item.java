@@ -1,6 +1,11 @@
 package comp3111.webscraper;
 
-
+/**
+ * Item class handles the information of a result item scrapped by WebScraper
+ * It acts as an database for an item
+ * @author zach1king
+ *
+ */
 
 public class Item implements Comparable<Item> {
 	private String title ; 
@@ -8,80 +13,79 @@ public class Item implements Comparable<Item> {
 	private double price ;
 	private String url ;
 	private String date ;
+	
 	/**
-	 * Returns the title
-	 * @return String of title
+	 * gets the title of the item
+	 * @return String	title
 	 */
 	public String getTitle() {
 		return title;
 	}
 	/**
-	 * Set the title
-	 *@param title - the title you want to set
+	 * sets the title of the item
+	 * @param title
 	 */
 	public void setTitle(String title) {
 		this.title = title;
 	}
 	/**
-	 * Returns the portal
-	 * @return String of portal
+	 * gets the Portal of the item
+	 * @return String	portal
 	 */
 	public String getPortal() {
 		return portal;
 	}
 	/**
-	 * Set the portal
-	 *@param portal - the portal you want to set
+	 * sets the portal of the item
 	 */
 	public void setPortal(String portal) {
 		this.portal = portal;
 	}
 	/**
-	 * Returns the price
-	 * @return double of price
+	 * gets the price of the item
+	 * @return String	price
 	 */
 	public double getPrice() {
 		return price;
 	}
 	/**
-	 * Set the price
-	 *@param price - the price you want to set
+	 * sets the price of the item
+	 * @param price
 	 */
 	public void setPrice(double price) {
 		this.price = price;
 	}
 	/**
-	 * Returns the URL
-	 * @return String of url
+	 * gets the url of the item
+	 * @return String title
 	 */
 	public String getUrl() {
 		return url;
 	}
-	/**
-	 * Set the URL
-	 *@param url - the url you want to set
+	/** 
+	 * sets the url of the item
+	 * @param url
 	 */
 	public void setUrl(String url) {
 		this.url = url;
 	}
 	/**
-	 * Returns the date
-	 * @return String of date
+	 * gets the date of the item
+	 * @return String date
 	 */
 	public String getDate() {
 		return date;
 	}
 	/**
-	 * Set the date
-	 *@param date - the date you want to set
+	 * sets the date of the item
+	 * @param date
 	 */
 	public void setDate(String date) {	
 		this.date = date;
 	}
 	/**
-	 * Compare value
-	 * @param a - the item you want to compare to
-	 * @return return 1 if current value is greater than comparing value;return -1 if current value is greater than comparing value;return 0 if they are the same
+	 * compare the price with the given item
+	 * @param Item to be compared
 	 */
 	public int compareTo(Item a) {
 		double result = this.price-a.price;
