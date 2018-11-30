@@ -335,7 +335,6 @@ public class Controller extends WebScraperApplication{
 	 /**
 	  * Get status of disability of Last Search Button
 	  * @return true if lastSearch Button is disabled
-	  * @return false otherwise
 	  */
 	 public boolean getStatus_isDisabledLastSearch() {
 		 return lastSearch.isDisable();
@@ -380,7 +379,6 @@ public class Controller extends WebScraperApplication{
 	 /**
 	  * Function to check whether the table is cleared or not
 	  * @return true if the table is empty
-	  * @return false otherwise
 	  */
 	 public boolean isTableClean() { return Bindings.isEmpty(table.getItems()).get(); }
 
