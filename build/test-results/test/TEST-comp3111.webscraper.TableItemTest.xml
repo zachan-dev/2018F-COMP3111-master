@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="comp3111.webscraper.TableItemTest" tests="8" skipped="0" failures="8" errors="0" timestamp="2018-11-29T15:35:48" hostname="DESKTOP-CKGH2IF" time="0.069">
+<testsuite name="comp3111.webscraper.TableItemTest" tests="8" skipped="0" failures="8" errors="0" timestamp="2018-11-30T10:22:17" hostname="DESKTOP-CKGH2IF" time="0.373">
   <properties/>
-  <testcase name="testGetPrice" classname="comp3111.webscraper.TableItemTest" time="0.051">
+  <testcase name="testGetPrice" classname="comp3111.webscraper.TableItemTest" time="0.126">
     <failure message="java.lang.NullPointerException" type="java.lang.NullPointerException">java.lang.NullPointerException
 	at comp3111.webscraper.TableItem.setPrice(TableItem.java:38)
-	at comp3111.webscraper.TableItemTest.testGetPrice(TableItemTest.java:34)
+	at comp3111.webscraper.TableItemTest.testGetPrice(TableItemTest.java:35)
 	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
 	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
 	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
@@ -54,10 +54,10 @@
 	at java.lang.Thread.run(Thread.java:748)
 </failure>
   </testcase>
-  <testcase name="testGetTitle" classname="comp3111.webscraper.TableItemTest" time="0.005">
+  <testcase name="testGetTitle" classname="comp3111.webscraper.TableItemTest" time="0.065">
     <failure message="java.lang.NullPointerException" type="java.lang.NullPointerException">java.lang.NullPointerException
 	at comp3111.webscraper.TableItem.setTitle(TableItem.java:30)
-	at comp3111.webscraper.TableItemTest.testGetTitle(TableItemTest.java:20)
+	at comp3111.webscraper.TableItemTest.testGetTitle(TableItemTest.java:21)
 	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
 	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
 	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
@@ -107,10 +107,10 @@
 	at java.lang.Thread.run(Thread.java:748)
 </failure>
   </testcase>
-  <testcase name="testGetDate" classname="comp3111.webscraper.TableItemTest" time="0.002">
+  <testcase name="testGetDate" classname="comp3111.webscraper.TableItemTest" time="0.003">
     <failure message="java.lang.NullPointerException" type="java.lang.NullPointerException">java.lang.NullPointerException
 	at comp3111.webscraper.TableItem.setDate(TableItem.java:54)
-	at comp3111.webscraper.TableItemTest.testGetDate(TableItemTest.java:59)
+	at comp3111.webscraper.TableItemTest.testGetDate(TableItemTest.java:60)
 	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
 	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
 	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
@@ -160,10 +160,10 @@
 	at java.lang.Thread.run(Thread.java:748)
 </failure>
   </testcase>
-  <testcase name="testGetUrl" classname="comp3111.webscraper.TableItemTest" time="0.002">
+  <testcase name="testGetUrl" classname="comp3111.webscraper.TableItemTest" time="0.001">
     <failure message="java.lang.NullPointerException" type="java.lang.NullPointerException">java.lang.NullPointerException
 	at comp3111.webscraper.TableItem.setUrl(TableItem.java:46)
-	at comp3111.webscraper.TableItemTest.testGetUrl(TableItemTest.java:47)
+	at comp3111.webscraper.TableItemTest.testGetUrl(TableItemTest.java:48)
 	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
 	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
 	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
@@ -213,10 +213,10 @@
 	at java.lang.Thread.run(Thread.java:748)
 </failure>
   </testcase>
-  <testcase name="testSetDate" classname="comp3111.webscraper.TableItemTest" time="0.001">
+  <testcase name="testSetDate" classname="comp3111.webscraper.TableItemTest" time="0.003">
     <failure message="java.lang.NullPointerException" type="java.lang.NullPointerException">java.lang.NullPointerException
 	at comp3111.webscraper.TableItem.setDate(TableItem.java:54)
-	at comp3111.webscraper.TableItemTest.testSetDate(TableItemTest.java:53)
+	at comp3111.webscraper.TableItemTest.testSetDate(TableItemTest.java:54)
 	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
 	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
 	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
@@ -266,10 +266,10 @@
 	at java.lang.Thread.run(Thread.java:748)
 </failure>
   </testcase>
-  <testcase name="testSetUrl" classname="comp3111.webscraper.TableItemTest" time="0.003">
+  <testcase name="testSetUrl" classname="comp3111.webscraper.TableItemTest" time="0.072">
     <failure message="java.lang.NullPointerException" type="java.lang.NullPointerException">java.lang.NullPointerException
 	at comp3111.webscraper.TableItem.setUrl(TableItem.java:46)
-	at comp3111.webscraper.TableItemTest.testSetUrl(TableItemTest.java:41)
+	at comp3111.webscraper.TableItemTest.testSetUrl(TableItemTest.java:42)
 	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
 	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
 	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
@@ -319,10 +319,10 @@
 	at java.lang.Thread.run(Thread.java:748)
 </failure>
   </testcase>
-  <testcase name="testSetPrice" classname="comp3111.webscraper.TableItemTest" time="0.0">
+  <testcase name="testSetPrice" classname="comp3111.webscraper.TableItemTest" time="0.001">
     <failure message="java.lang.NullPointerException" type="java.lang.NullPointerException">java.lang.NullPointerException
 	at comp3111.webscraper.TableItem.setPrice(TableItem.java:38)
-	at comp3111.webscraper.TableItemTest.testSetPrice(TableItemTest.java:27)
+	at comp3111.webscraper.TableItemTest.testSetPrice(TableItemTest.java:28)
 	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
 	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
 	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
@@ -372,10 +372,10 @@
 	at java.lang.Thread.run(Thread.java:748)
 </failure>
   </testcase>
-  <testcase name="testSetTitle" classname="comp3111.webscraper.TableItemTest" time="0.0">
+  <testcase name="testSetTitle" classname="comp3111.webscraper.TableItemTest" time="0.009">
     <failure message="java.lang.NullPointerException" type="java.lang.NullPointerException">java.lang.NullPointerException
 	at comp3111.webscraper.TableItem.setTitle(TableItem.java:30)
-	at comp3111.webscraper.TableItemTest.testSetTitle(TableItemTest.java:14)
+	at comp3111.webscraper.TableItemTest.testSetTitle(TableItemTest.java:15)
 	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
 	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
 	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)

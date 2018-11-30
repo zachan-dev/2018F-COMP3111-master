@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="comp3111.webscraper.ControllerTest" tests="10" skipped="0" failures="10" errors="0" timestamp="2018-11-29T15:35:42" hostname="DESKTOP-CKGH2IF" time="5.728">
+<testsuite name="comp3111.webscraper.ControllerTest" tests="10" skipped="0" failures="10" errors="0" timestamp="2018-11-30T10:22:15" hostname="DESKTOP-CKGH2IF" time="1.763">
   <properties/>
-  <testcase name="testSearchByStatus_isDisabledLastSearch" classname="comp3111.webscraper.ControllerTest" time="5.702">
+  <testcase name="testSearchByStatus_isDisabledLastSearch" classname="comp3111.webscraper.ControllerTest" time="1.755">
     <failure message="java.lang.NullPointerException" type="java.lang.NullPointerException">java.lang.NullPointerException
-	at comp3111.webscraper.Controller.search(Controller.java:185)
+	at comp3111.webscraper.Controller.search(Controller.java:191)
 	at comp3111.webscraper.ControllerTest.testSearchByStatus_isDisabledLastSearch(ControllerTest.java:30)
 	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
 	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
@@ -54,9 +54,9 @@
 	at java.lang.Thread.run(Thread.java:748)
 </failure>
   </testcase>
-  <testcase name="testCloseByLabelCount" classname="comp3111.webscraper.ControllerTest" time="0.017">
+  <testcase name="testCloseByLabelCount" classname="comp3111.webscraper.ControllerTest" time="0.001">
     <failure message="java.lang.NullPointerException" type="java.lang.NullPointerException">java.lang.NullPointerException
-	at comp3111.webscraper.Controller.close(Controller.java:304)
+	at comp3111.webscraper.Controller.close(Controller.java:310)
 	at comp3111.webscraper.ControllerTest.testCloseByLabelCount(ControllerTest.java:51)
 	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
 	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
@@ -107,9 +107,9 @@
 	at java.lang.Thread.run(Thread.java:748)
 </failure>
   </testcase>
-  <testcase name="testCloseByLabelPrice" classname="comp3111.webscraper.ControllerTest" time="0.002">
+  <testcase name="testCloseByLabelPrice" classname="comp3111.webscraper.ControllerTest" time="0.0">
     <failure message="java.lang.NullPointerException" type="java.lang.NullPointerException">java.lang.NullPointerException
-	at comp3111.webscraper.Controller.close(Controller.java:304)
+	at comp3111.webscraper.Controller.close(Controller.java:310)
 	at comp3111.webscraper.ControllerTest.testCloseByLabelPrice(ControllerTest.java:58)
 	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
 	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
@@ -162,7 +162,7 @@
   </testcase>
   <testcase name="testCloseByStatus_isDisabledLastSearch" classname="comp3111.webscraper.ControllerTest" time="0.0">
     <failure message="java.lang.NullPointerException" type="java.lang.NullPointerException">java.lang.NullPointerException
-	at comp3111.webscraper.Controller.close(Controller.java:304)
+	at comp3111.webscraper.Controller.close(Controller.java:310)
 	at comp3111.webscraper.ControllerTest.testCloseByStatus_isDisabledLastSearch(ControllerTest.java:15)
 	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
 	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
@@ -215,7 +215,7 @@
   </testcase>
   <testcase name="testCloseByTextAreaConsole" classname="comp3111.webscraper.ControllerTest" time="0.001">
     <failure message="java.lang.NullPointerException" type="java.lang.NullPointerException">java.lang.NullPointerException
-	at comp3111.webscraper.Controller.close(Controller.java:304)
+	at comp3111.webscraper.Controller.close(Controller.java:310)
 	at comp3111.webscraper.ControllerTest.testCloseByTextAreaConsole(ControllerTest.java:44)
 	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
 	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
@@ -268,7 +268,7 @@
   </testcase>
   <testcase name="testLastSearchByStatus_isDisabledLastSearch" classname="comp3111.webscraper.ControllerTest" time="0.0">
     <failure message="java.lang.NullPointerException" type="java.lang.NullPointerException">java.lang.NullPointerException
-	at comp3111.webscraper.Controller.last(Controller.java:289)
+	at comp3111.webscraper.Controller.last(Controller.java:295)
 	at comp3111.webscraper.ControllerTest.testLastSearchByStatus_isDisabledLastSearch(ControllerTest.java:22)
 	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
 	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
@@ -319,9 +319,9 @@
 	at java.lang.Thread.run(Thread.java:748)
 </failure>
   </testcase>
-  <testcase name="testCloseByTextFieldKeyword" classname="comp3111.webscraper.ControllerTest" time="0.0">
+  <testcase name="testCloseByTextFieldKeyword" classname="comp3111.webscraper.ControllerTest" time="0.001">
     <failure message="java.lang.NullPointerException" type="java.lang.NullPointerException">java.lang.NullPointerException
-	at comp3111.webscraper.Controller.close(Controller.java:304)
+	at comp3111.webscraper.Controller.close(Controller.java:310)
 	at comp3111.webscraper.ControllerTest.testCloseByTextFieldKeyword(ControllerTest.java:37)
 	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
 	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
@@ -372,9 +372,9 @@
 	at java.lang.Thread.run(Thread.java:748)
 </failure>
   </testcase>
-  <testcase name="testCloseByLabelMin" classname="comp3111.webscraper.ControllerTest" time="0.001">
+  <testcase name="testCloseByLabelMin" classname="comp3111.webscraper.ControllerTest" time="0.0">
     <failure message="java.lang.NullPointerException" type="java.lang.NullPointerException">java.lang.NullPointerException
-	at comp3111.webscraper.Controller.close(Controller.java:304)
+	at comp3111.webscraper.Controller.close(Controller.java:310)
 	at comp3111.webscraper.ControllerTest.testCloseByLabelMin(ControllerTest.java:65)
 	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
 	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
@@ -425,9 +425,9 @@
 	at java.lang.Thread.run(Thread.java:748)
 </failure>
   </testcase>
-  <testcase name="testCloseByTableCleaned" classname="comp3111.webscraper.ControllerTest" time="0.003">
+  <testcase name="testCloseByTableCleaned" classname="comp3111.webscraper.ControllerTest" time="0.001">
     <failure message="java.lang.NullPointerException" type="java.lang.NullPointerException">java.lang.NullPointerException
-	at comp3111.webscraper.Controller.close(Controller.java:304)
+	at comp3111.webscraper.Controller.close(Controller.java:310)
 	at comp3111.webscraper.ControllerTest.testCloseByTableCleaned(ControllerTest.java:79)
 	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
 	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
@@ -480,7 +480,7 @@
   </testcase>
   <testcase name="testCloseByLabelLatest" classname="comp3111.webscraper.ControllerTest" time="0.0">
     <failure message="java.lang.NullPointerException" type="java.lang.NullPointerException">java.lang.NullPointerException
-	at comp3111.webscraper.Controller.close(Controller.java:304)
+	at comp3111.webscraper.Controller.close(Controller.java:310)
 	at comp3111.webscraper.ControllerTest.testCloseByLabelLatest(ControllerTest.java:72)
 	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
 	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
