@@ -87,123 +87,126 @@ public class WebScraper {
 <span class="fc" id="L87">	}</span>
 
 	/**
-	 * The only method implemented in this class, to scrape web content from the craigslist
-	 * 
+	 * scrape web content from the craigslist and preloved
 	 * @param keyword - the keyword you want to search
 	 * @return A list of Item that has found. A zero size list is return if nothing is found. Null if any exception (e.g. no connectivity)
 	 */
 	public List&lt;Item&gt; scrape(String keyword) {
 		
-<span class="fc bfc" id="L97" title="All 6 branches covered.">		if (keyword == &quot;&quot; || keyword == &quot; &quot; || keyword.contains(&quot;  &quot;)) { return null; }</span>
+<span class="fc bfc" id="L96" title="All 6 branches covered.">		if (keyword == &quot;&quot; || keyword == &quot; &quot; || keyword.contains(&quot;  &quot;)) { return null; }</span>
 
 		try {
-<span class="fc" id="L100">			Vector&lt;Item&gt; result = new Vector&lt;Item&gt;();</span>
+<span class="fc" id="L99">			Vector&lt;Item&gt; result = new Vector&lt;Item&gt;();</span>
 			
-<span class="fc" id="L102">			int noPage = 0;</span>
-<span class="fc" id="L103">			int noItem = 0;</span>
-<span class="fc" id="L104">			System.out.println(&quot;Searching in Craigslist...&quot;);</span>
+<span class="fc" id="L101">			int noPage = 0;</span>
+<span class="fc" id="L102">			int noItem = 0;</span>
+<span class="fc" id="L103">			System.out.println(&quot;Searching in Craigslist...&quot;);</span>
 			
 			do {
-<span class="fc" id="L107">				String searchUrl = DEFAULT_URL + &quot;search/sss?s=&quot; + Integer.toString(noPage * 120) + &quot;&amp;sort=rel&amp;amp;query=&quot; + URLEncoder.encode(keyword, &quot;UTF-8&quot;) + &quot;&amp;searchNearby=1&quot;;</span>
-<span class="fc" id="L108">				HtmlPage page = client.getPage(searchUrl);</span>
-<span class="fc" id="L109">				List&lt;?&gt; items = (List&lt;?&gt;) page.getByXPath(&quot;//li[@class='result-row']&quot;);</span>
-<span class="fc" id="L110">				noItem = items.size();</span>
+<span class="fc" id="L106">				String searchUrl = DEFAULT_URL + &quot;search/sss?s=&quot; + Integer.toString(noPage * 120) + &quot;&amp;sort=rel&amp;amp;query=&quot; + URLEncoder.encode(keyword, &quot;UTF-8&quot;) + &quot;&amp;searchNearby=1&quot;;</span>
+<span class="fc" id="L107">				HtmlPage page = client.getPage(searchUrl);</span>
+<span class="fc" id="L108">				List&lt;?&gt; items = (List&lt;?&gt;) page.getByXPath(&quot;//li[@class='result-row']&quot;);</span>
+<span class="fc" id="L109">				noItem = items.size();</span>
 
-<span class="fc bfc" id="L112" title="All 2 branches covered.">				for (int i = 0; i &lt; items.size(); i++) {</span>
-<span class="fc" id="L113">					HtmlElement htmlItem = (HtmlElement) items.get(i);</span>
-<span class="fc" id="L114">					HtmlAnchor itemAnchor = ((HtmlAnchor) htmlItem.getFirstByXPath(&quot;.//p[@class='result-info']/a&quot;));</span>
-<span class="fc" id="L115">					HtmlElement spanPrice = ((HtmlElement) htmlItem.getFirstByXPath(&quot;.//a/span[@class='result-price']&quot;));</span>
-<span class="fc" id="L116">					HtmlElement spanDate = ((HtmlElement) htmlItem.getFirstByXPath(&quot;.//time[@class='result-date']&quot;));</span>
+<span class="fc bfc" id="L111" title="All 2 branches covered.">				for (int i = 0; i &lt; items.size(); i++) {</span>
+<span class="fc" id="L112">					HtmlElement htmlItem = (HtmlElement) items.get(i);</span>
+<span class="fc" id="L113">					HtmlAnchor itemAnchor = ((HtmlAnchor) htmlItem.getFirstByXPath(&quot;.//p[@class='result-info']/a&quot;));</span>
+<span class="fc" id="L114">					HtmlElement spanPrice = ((HtmlElement) htmlItem.getFirstByXPath(&quot;.//a/span[@class='result-price']&quot;));</span>
+<span class="fc" id="L115">					HtmlElement spanDate = ((HtmlElement) htmlItem.getFirstByXPath(&quot;.//time[@class='result-date']&quot;));</span>
 
 					// It is possible that an item doesn't have any price, we set the price to 0.0
 					// in this case
-<span class="fc bfc" id="L120" title="All 2 branches covered.">					String itemPrice = spanPrice == null ? &quot;0.0&quot; : spanPrice.asText();</span>
+<span class="fc bfc" id="L119" title="All 2 branches covered.">					String itemPrice = spanPrice == null ? &quot;0.0&quot; : spanPrice.asText();</span>
 					//String itemDate = spanDate.asText();
-<span class="fc" id="L122">					String itemDate = spanDate.getAttribute(&quot;datetime&quot;);</span>
+<span class="fc" id="L121">					String itemDate = spanDate.getAttribute(&quot;datetime&quot;);</span>
 
-<span class="fc" id="L124">					Item item = new Item();</span>
-<span class="fc" id="L125">					item.setTitle(itemAnchor.asText());</span>
-<span class="fc" id="L126">					item.setUrl(itemAnchor.getHrefAttribute());</span>
+<span class="fc" id="L123">					Item item = new Item();</span>
+<span class="fc" id="L124">					item.setTitle(itemAnchor.asText());</span>
+<span class="fc" id="L125">					item.setUrl(itemAnchor.getHrefAttribute());</span>
 
-<span class="fc" id="L128">					item.setPrice(new Double(itemPrice.replace(&quot;$&quot;, &quot;&quot;)));</span>
-<span class="fc" id="L129">					item.setDate(itemDate);</span>
-<span class="fc" id="L130">					item.setPortal(&quot;Craigslist&quot;);</span>
+<span class="fc" id="L127">					item.setPrice(new Double(itemPrice.replace(&quot;$&quot;, &quot;&quot;)));</span>
+<span class="fc" id="L128">					item.setDate(itemDate);</span>
+<span class="fc" id="L129">					item.setPortal(&quot;Craigslist&quot;);</span>
 
-<span class="fc" id="L132">					result.add(item);</span>
+<span class="fc" id="L131">					result.add(item);</span>
 				}
-<span class="fc bfc" id="L134" title="All 2 branches covered.">				if (noItem != 0) { </span>
-<span class="fc" id="L135">					noPage++; </span>
-<span class="fc" id="L136">					Controller.pages++; </span>
-<span class="fc" id="L137">					System.out.println(&quot;Scrapping page number &quot; + Controller.pages + &quot;...&quot;); </span>
+<span class="fc bfc" id="L133" title="All 2 branches covered.">				if (noItem != 0) { </span>
+<span class="fc" id="L134">					noPage++; </span>
+<span class="fc" id="L135">					Controller.pages++; </span>
+<span class="fc" id="L136">					System.out.println(&quot;Scrapping page number &quot; + Controller.pages + &quot;...&quot;); </span>
 				}
-<span class="fc" id="L139">				Controller.size += noItem;</span>
+<span class="fc" id="L138">				Controller.size += noItem;</span>
 				
-<span class="fc bfc" id="L141" title="All 2 branches covered.">			} while (noItem == 120);</span>
+<span class="fc bfc" id="L140" title="All 2 branches covered.">			} while (noItem == 120);</span>
 
 
-<span class="fc" id="L144">			noPage = 1;</span>
-<span class="fc" id="L145">			noItem = 0;</span>
-<span class="fc" id="L146">			System.out.println(&quot;Searching in Preloved...&quot;);</span>
+<span class="fc" id="L143">			noPage = 1;</span>
+<span class="fc" id="L144">			noItem = 0;</span>
+<span class="fc" id="L145">			System.out.println(&quot;Searching in Preloved...&quot;);</span>
 			do {
-<span class="fc" id="L148">				String searchUrl1 = DEFAULT_URL1 + &quot;search?keyword=&quot; + URLEncoder.encode(keyword, &quot;UTF-8&quot;) + &quot;&amp;page=&quot; + noPage;</span>
-<span class="fc" id="L149">				Document doc = Jsoup.connect(searchUrl1).get();</span>
-<span class="fc" id="L150">				Elements ele=doc.select(&quot;li.search-result&quot;);</span>
-<span class="fc" id="L151">				Elements a=ele.select(&quot;li[data-test-element='search-result']&quot;);</span>
-<span class="fc" id="L152">				noItem = a.size();</span>
+<span class="fc" id="L147">				String searchUrl1 = DEFAULT_URL1 + &quot;search?keyword=&quot; + URLEncoder.encode(keyword, &quot;UTF-8&quot;) + &quot;&amp;page=&quot; + noPage;</span>
+<span class="fc" id="L148">				Document doc = Jsoup.connect(searchUrl1).get();</span>
+<span class="fc" id="L149">				Elements ele=doc.select(&quot;li.search-result&quot;);</span>
+<span class="fc" id="L150">				Elements a=ele.select(&quot;li[data-test-element='search-result']&quot;);</span>
+<span class="fc" id="L151">				noItem = a.size();</span>
 
-<span class="fc bfc" id="L154" title="All 2 branches covered.">				for (int i = 0; i &lt; a.size(); i++) {</span>
-<span class="fc" id="L155">					String name=a.get(i).select(&quot;span[itemprop='name']&quot;).text();</span>
-<span class="fc" id="L156">					String price=a.get(i).select(&quot;span[itemprop='price']&quot;).text();				</span>
+<span class="fc bfc" id="L153" title="All 2 branches covered.">				for (int i = 0; i &lt; a.size(); i++) {</span>
+<span class="fc" id="L154">					String name=a.get(i).select(&quot;span[itemprop='name']&quot;).text();</span>
+<span class="fc" id="L155">					String price=a.get(i).select(&quot;span[itemprop='price']&quot;).text();				</span>
 					try {
-<span class="fc" id="L158">						price=price.substring(1,price.length());	</span>
-<span class="fc" id="L159">						price=price.replace(&quot;,&quot;,&quot;&quot;);</span>
+<span class="fc" id="L157">						price=price.substring(1,price.length());	</span>
+<span class="fc" id="L158">						price=price.replace(&quot;,&quot;,&quot;&quot;);</span>
 					}
-<span class="fc" id="L161">					catch (Exception e) {</span>
-<span class="fc" id="L162">						price=&quot;0&quot;;</span>
-<span class="fc" id="L163">					}</span>
-<span class="fc" id="L164">					String link=a.get(i).select(&quot;a&quot;).attr(&quot;href&quot;);</span>
-<span class="fc" id="L165">					Item item = new Item();</span>
-<span class="fc" id="L166">					item.setTitle(name);</span>
-<span class="fc" id="L167">					item.setPortal(&quot;Preloved&quot;);</span>
-<span class="fc" id="L168">					item.setUrl(link);</span>
-<span class="fc" id="L169">					item.setPrice(new Double(price));</span>
-<span class="fc" id="L170">					item.setDate(&quot;-&quot;);</span>
-<span class="fc" id="L171">					result.add(item);				</span>
+<span class="fc" id="L160">					catch (Exception e) {</span>
+<span class="fc" id="L161">						price=&quot;0&quot;;</span>
+<span class="fc" id="L162">					}</span>
+<span class="fc" id="L163">					String link=a.get(i).select(&quot;a&quot;).attr(&quot;href&quot;);</span>
+<span class="fc" id="L164">					Item item = new Item();</span>
+<span class="fc" id="L165">					item.setTitle(name);</span>
+<span class="fc" id="L166">					item.setPortal(&quot;Preloved&quot;);</span>
+<span class="fc" id="L167">					item.setUrl(link);</span>
+<span class="fc" id="L168">					item.setPrice(new Double(price));</span>
+<span class="fc" id="L169">					item.setDate(&quot;-&quot;);</span>
+<span class="fc" id="L170">					result.add(item);				</span>
 				}
-<span class="fc bfc" id="L173" title="All 2 branches covered.">				if (noItem != 0) { </span>
-<span class="fc" id="L174">					noPage++;</span>
-<span class="fc" id="L175">					Controller.pages++;</span>
-<span class="fc" id="L176">					System.out.println(&quot;Scrapping page number &quot; + Controller.pages + &quot;...&quot;);</span>
+<span class="fc bfc" id="L172" title="All 2 branches covered.">				if (noItem != 0) { </span>
+<span class="fc" id="L173">					noPage++;</span>
+<span class="fc" id="L174">					Controller.pages++;</span>
+<span class="fc" id="L175">					System.out.println(&quot;Scrapping page number &quot; + Controller.pages + &quot;...&quot;);</span>
 				}
-<span class="fc" id="L178">				Controller.size += noItem;</span>
+<span class="fc" id="L177">				Controller.size += noItem;</span>
 				
-<span class="pc bpc" id="L180" title="1 of 4 branches missed.">			} while (noItem == 20 &amp;&amp; noPage &lt; 100);</span>
+<span class="pc bpc" id="L179" title="1 of 4 branches missed.">			} while (noItem == 20 &amp;&amp; noPage &lt; 100);</span>
 			
-<span class="fc" id="L182">			Collections.sort(result);	</span>
-<span class="fc" id="L183">			this.result=result;</span>
-<span class="fc" id="L184">			client.close();</span>
-<span class="fc" id="L185">			return result;</span>
-<span class="fc" id="L186">		} catch (Exception e) {</span>
-<span class="fc" id="L187">			System.out.println(e);</span>
+<span class="fc" id="L181">			Collections.sort(result);	</span>
+<span class="fc" id="L182">			this.result=result;</span>
+<span class="fc" id="L183">			client.close();</span>
+<span class="fc" id="L184">			return result;</span>
+<span class="nc" id="L185">		} catch (Exception e) {</span>
+<span class="nc" id="L186">			System.out.println(e);</span>
 		}
-<span class="fc" id="L189">		return null;</span>
+<span class="nc" id="L188">		return null;</span>
 	}
-
+	/**
+	 * refine item from search result
+	 * @param keyword - the keyword you want to refine
+	 * @return A list of Item that has refined. A zero size list is return if nothing is found. Null if any exception (e.g. no connectivity)
+	 */
 	public List&lt;Item&gt; refine(String keyword){
-<span class="nc" id="L193">		Vector&lt;Item&gt; refine = new Vector&lt;Item&gt;();</span>
-<span class="nc bnc" id="L194" title="All 2 branches missed.">		for (int i=0;i&lt;this.result.size();i++)</span>
+<span class="fc" id="L196">		Vector&lt;Item&gt; refine = new Vector&lt;Item&gt;();</span>
+<span class="fc bfc" id="L197" title="All 2 branches covered.">		for (int i=0;i&lt;this.result.size();i++)</span>
 		{
-<span class="nc bnc" id="L196" title="All 2 branches missed.">			if (this.result.get(i).getTitle().contains(keyword))</span>
+<span class="fc bfc" id="L199" title="All 2 branches covered.">			if (this.result.get(i).getTitle().contains(keyword))</span>
 			{
-<span class="nc" id="L198">				refine.add(this.result.get(i));</span>
+<span class="fc" id="L201">				refine.add(this.result.get(i));</span>
 			}
 		}		
-<span class="nc" id="L201">		return refine;</span>
+<span class="fc" id="L204">		return refine;</span>
 	}
 	
 	public void close() {
-<span class="nc" id="L205">		client.close();</span>
-<span class="nc" id="L206">	}</span>
+<span class="nc" id="L208">		client.close();</span>
+<span class="nc" id="L209">	}</span>
 	
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.1.201803210924</span></div></body></html>

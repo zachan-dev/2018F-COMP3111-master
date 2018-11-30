@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="comp3111.webscraper.ControllerTest" tests="10" skipped="0" failures="10" errors="0" timestamp="2018-11-30T10:22:15" hostname="DESKTOP-CKGH2IF" time="1.763">
+<testsuite name="comp3111.webscraper.ControllerTest" tests="10" skipped="0" failures="10" errors="0" timestamp="2018-11-30T12:16:22" hostname="DESKTOP-CKGH2IF" time="1.436">
   <properties/>
-  <testcase name="testSearchByStatus_isDisabledLastSearch" classname="comp3111.webscraper.ControllerTest" time="1.755">
+  <testcase name="testSearchByStatus_isDisabledLastSearch" classname="comp3111.webscraper.ControllerTest" time="1.429">
     <failure message="java.lang.NullPointerException" type="java.lang.NullPointerException">java.lang.NullPointerException
 	at comp3111.webscraper.Controller.search(Controller.java:191)
 	at comp3111.webscraper.ControllerTest.testSearchByStatus_isDisabledLastSearch(ControllerTest.java:30)
@@ -54,7 +54,7 @@
 	at java.lang.Thread.run(Thread.java:748)
 </failure>
   </testcase>
-  <testcase name="testCloseByLabelCount" classname="comp3111.webscraper.ControllerTest" time="0.001">
+  <testcase name="testCloseByLabelCount" classname="comp3111.webscraper.ControllerTest" time="0.002">
     <failure message="java.lang.NullPointerException" type="java.lang.NullPointerException">java.lang.NullPointerException
 	at comp3111.webscraper.Controller.close(Controller.java:310)
 	at comp3111.webscraper.ControllerTest.testCloseByLabelCount(ControllerTest.java:51)
@@ -160,7 +160,7 @@
 	at java.lang.Thread.run(Thread.java:748)
 </failure>
   </testcase>
-  <testcase name="testCloseByStatus_isDisabledLastSearch" classname="comp3111.webscraper.ControllerTest" time="0.0">
+  <testcase name="testCloseByStatus_isDisabledLastSearch" classname="comp3111.webscraper.ControllerTest" time="0.002">
     <failure message="java.lang.NullPointerException" type="java.lang.NullPointerException">java.lang.NullPointerException
 	at comp3111.webscraper.Controller.close(Controller.java:310)
 	at comp3111.webscraper.ControllerTest.testCloseByStatus_isDisabledLastSearch(ControllerTest.java:15)
@@ -213,7 +213,7 @@
 	at java.lang.Thread.run(Thread.java:748)
 </failure>
   </testcase>
-  <testcase name="testCloseByTextAreaConsole" classname="comp3111.webscraper.ControllerTest" time="0.001">
+  <testcase name="testCloseByTextAreaConsole" classname="comp3111.webscraper.ControllerTest" time="0.0">
     <failure message="java.lang.NullPointerException" type="java.lang.NullPointerException">java.lang.NullPointerException
 	at comp3111.webscraper.Controller.close(Controller.java:310)
 	at comp3111.webscraper.ControllerTest.testCloseByTextAreaConsole(ControllerTest.java:44)
@@ -266,7 +266,7 @@
 	at java.lang.Thread.run(Thread.java:748)
 </failure>
   </testcase>
-  <testcase name="testLastSearchByStatus_isDisabledLastSearch" classname="comp3111.webscraper.ControllerTest" time="0.0">
+  <testcase name="testLastSearchByStatus_isDisabledLastSearch" classname="comp3111.webscraper.ControllerTest" time="0.001">
     <failure message="java.lang.NullPointerException" type="java.lang.NullPointerException">java.lang.NullPointerException
 	at comp3111.webscraper.Controller.last(Controller.java:295)
 	at comp3111.webscraper.ControllerTest.testLastSearchByStatus_isDisabledLastSearch(ControllerTest.java:22)
@@ -319,7 +319,7 @@
 	at java.lang.Thread.run(Thread.java:748)
 </failure>
   </testcase>
-  <testcase name="testCloseByTextFieldKeyword" classname="comp3111.webscraper.ControllerTest" time="0.001">
+  <testcase name="testCloseByTextFieldKeyword" classname="comp3111.webscraper.ControllerTest" time="0.0">
     <failure message="java.lang.NullPointerException" type="java.lang.NullPointerException">java.lang.NullPointerException
 	at comp3111.webscraper.Controller.close(Controller.java:310)
 	at comp3111.webscraper.ControllerTest.testCloseByTextFieldKeyword(ControllerTest.java:37)

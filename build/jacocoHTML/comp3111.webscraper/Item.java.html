@@ -27,30 +27,44 @@
 	public void setPrice(double price) {
 <span class="fc" id="L28">		this.price = price;</span>
 <span class="fc" id="L29">	}</span>
+	/**
+	 * Returns the URL
+	 * @return String of url
+	 */
 	public String getUrl() {
-<span class="fc" id="L31">		return url;</span>
+<span class="fc" id="L35">		return url;</span>
 	}
+	/**
+	 * Set the URL
+	 *@param url - the url you want to set
+	 * Returns the URL
+	 */
 	public void setUrl(String url) {
-<span class="fc" id="L34">		this.url = url;</span>
-<span class="fc" id="L35">	}</span>
+<span class="fc" id="L43">		this.url = url;</span>
+<span class="fc" id="L44">	}</span>
 	public String getDate() {
-<span class="fc" id="L37">		return date;</span>
+<span class="fc" id="L46">		return date;</span>
 	}
 	public void setDate(String date) {	
-<span class="fc" id="L40">		this.date = date;</span>
-<span class="fc" id="L41">	}</span>
+<span class="fc" id="L49">		this.date = date;</span>
+<span class="fc" id="L50">	}</span>
+	/**
+	 * Compare value
+	 * @param a - the item you want to compare to
+	 * @return return 1 if current value is greater than comparing value;return -1 if current value is greater than comparing value;return 0 if they are the same
+	 */
 	public int compareTo(Item a) {
-<span class="fc" id="L43">		double result = this.price-a.price;</span>
-<span class="fc bfc" id="L44" title="All 2 branches covered.">		if (result&lt;0)</span>
+<span class="fc" id="L57">		double result = this.price-a.price;</span>
+<span class="fc bfc" id="L58" title="All 2 branches covered.">		if (result&lt;0)</span>
 		{
-<span class="fc" id="L46">			return -1;</span>
+<span class="fc" id="L60">			return -1;</span>
 		}
-<span class="fc bfc" id="L48" title="All 2 branches covered.">		else if (result==0) {</span>
-<span class="fc" id="L49">			return this.portal.compareTo(a.portal);</span>
+<span class="fc bfc" id="L62" title="All 2 branches covered.">		else if (result==0) {</span>
+<span class="fc" id="L63">			return this.portal.compareTo(a.portal);</span>
 		}
 		else
 		{
-<span class="fc" id="L53">			return 1;</span>
+<span class="fc" id="L67">			return 1;</span>
 		}
 	}
 

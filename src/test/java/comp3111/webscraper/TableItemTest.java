@@ -1,64 +1,67 @@
 package comp3111.webscraper;
 
-
 import org.junit.Test;
-
-import javafx.beans.property.SimpleDoubleProperty;
-import javafx.beans.property.SimpleStringProperty;
-
 import static org.junit.Assert.*;
 
+
+
 public class TableItemTest {
+	
+	
+	@Test
+	public void testInitialiseTitle() {
+		TableItem a = new TableItem("A", 10, "abc", "20181130");
+		assertEquals(a.getTitle(), "A");
+	}
+	
+	@Test
+	public void testInitialisePrice() {
+		TableItem a = new TableItem("A", 10, "abc", "20181130");
+		assertEquals(Double.toString(a.getPrice()), Double.toString((double)10));
+	
+	}
+	
+	@Test
+	public void testInitialiseUrl() {
+		TableItem a = new TableItem("A", 10, "abc", "20181130");
+		assertEquals(a.getUrl(), "abc");
+		
+	}
+	
+	@Test
+	public void testInitialiseDate() {
+		TableItem a = new TableItem("A", 10, "abc", "20181130");
+		assertEquals(a.getDate(), "20181130");
+	}
+	
 	@Test
 	public void testSetTitle() {
-		TableItem i = new TableItem(); 
-		i.setTitle("ABCDE");
-		assertEquals(i.getTitle(), "ABCDE");
+		TableItem a = new TableItem("A", 10, "abc", "20181130");
+		a.setTitle("B");
+		assertEquals(a.getTitle(), "B");
 	}
-	@Test
-	public void testGetTitle() {
-		TableItem i = new TableItem();
-		i.setTitle("ABCDE");		
-		assertEquals(i.getTitle(), "ABCDE");
-	}
-
-	@Test
+	
+	@Test 
 	public void testSetPrice() {
-		TableItem i = new TableItem();
-		i.setPrice(1.5);
-		double delta = 0.5;
-		assertEquals(i.getPrice(), 1.5,delta);
+		TableItem a = new TableItem("A", 10, "abc", "20181130");
+		a.setPrice(20);
+		assertEquals(Double.toString(a.getPrice()),Double.toString((double)20));
 	}
-	@Test
-	public void testGetPrice() {
-		TableItem i = new TableItem();
-		i.setPrice(1.5);	
-		double delta = 0.5;
-		assertEquals(i.getPrice(), 1.5,delta);
-	}
+	
+	
 	@Test
 	public void testSetUrl() {
-		TableItem i = new TableItem();
-		i.setUrl("www.yahoo.com");
-		assertEquals(i.getUrl(), "www.yahoo.com");
+		TableItem a = new TableItem("A", 10, "abc", "20181130");
+		a.setUrl("def");
+		assertEquals(a.getUrl(), "def");
 	}
-	@Test
-	public void testGetUrl() {
-		TableItem i = new TableItem();
-		i.setUrl("www.yahoo.com");
-		assertEquals(i.getUrl(), "www.yahoo.com");
-	}
+	
 	@Test
 	public void testSetDate() {
-		TableItem i = new TableItem();
-		i.setDate("11/2");
-		assertEquals(i.getDate(), "11/2");
+		TableItem a = new TableItem("A", 10, "abc", "20181130");
+		a.setDate("20181201");
+		assertEquals(a.getDate(), "20181201");
 	}
-	@Test
-	public void testGetDate() {
-		TableItem i = new TableItem();
-		i.setDate("11/2");
-		assertEquals(i.getDate(), "11/2");
-	}
+	
 
 }
