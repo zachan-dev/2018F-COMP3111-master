@@ -18,7 +18,10 @@ public class TableItem {
 	
 	/**
 	 * Initializer of TableItem
-	 * 
+	 * @param title Title of the item
+	 * @param price Price of the item
+	 * @param url Url of the item
+	 * @param date Date of the item
 	 */
 	public TableItem(String title, double price, String url, String date) {
 		this.title = new SimpleStringProperty(title);

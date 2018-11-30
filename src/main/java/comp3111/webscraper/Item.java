@@ -22,8 +22,8 @@ public class Item implements Comparable<Item> {
 		return title;
 	}
 	/**
-	 * sets the title of the item
-	 * @param title
+	 *
+	 * @param title sets the title of the item
 	 */
 	public void setTitle(String title) {
 		this.title = title;
@@ -36,7 +36,8 @@ public class Item implements Comparable<Item> {
 		return portal;
 	}
 	/**
-	 * sets the portal of the item
+	 * 
+	 * @param portal sets the portal of the item
 	 */
 	public void setPortal(String portal) {
 		this.portal = portal;
@@ -49,8 +50,8 @@ public class Item implements Comparable<Item> {
 		return price;
 	}
 	/**
-	 * sets the price of the item
-	 * @param price
+	 * 
+	 * @param price sets the price of the item
 	 */
 	public void setPrice(double price) {
 		this.price = price;
@@ -63,8 +64,8 @@ public class Item implements Comparable<Item> {
 		return url;
 	}
 	/** 
-	 * sets the url of the item
-	 * @param url
+	 * 
+	 * @param url sets the url of the item
 	 */
 	public void setUrl(String url) {
 		this.url = url;
@@ -77,15 +78,15 @@ public class Item implements Comparable<Item> {
 		return date;
 	}
 	/**
-	 * sets the date of the item
-	 * @param date
+	 * 
+	 * @param date sets the date of the item
 	 */
 	public void setDate(String date) {	
 		this.date = date;
 	}
 	/**
-	 * compare the price with the given item
-	 * @param Item to be compared
+	 * 
+	 * @param a Item to be compared, compare the price with the given item
 	 */
 	public int compareTo(Item a) {
 		double result = this.price-a.price;
