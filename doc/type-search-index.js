@@ -1,1 +1,1 @@
-typeSearchIndex = [{"p":"comp3111.webscraper","l":"WebScraper"}]
+typeSearchIndex = [{"p":"comp3111.webscraper","l":"Controller"},{"p":"comp3111.webscraper","l":"Item"},{"p":"comp3111.webscraper","l":"TableItem"},{"p":"comp3111.webscraper","l":"WebScraper"},{"p":"comp3111.webscraper","l":"WebScraperApplication"}]
