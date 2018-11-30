@@ -1,0 +1,1 @@
+memberSearchIndex = [{"p":"comp3111.webscraper","c":"WebScraper","l":"close()"},{"p":"comp3111.webscraper","c":"WebScraper","l":"refine(String)","url":"refine-java.lang.String-"},{"p":"comp3111.webscraper","c":"WebScraper","l":"scrape(String)","url":"scrape-java.lang.String-"},{"p":"comp3111.webscraper","c":"WebScraper","l":"WebScraper()"}]

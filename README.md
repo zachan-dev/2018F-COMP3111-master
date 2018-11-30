@@ -20,14 +20,6 @@
 
 For `Basic Task 3`, instead of writing to the `Console` tab to show how many pages has already been scraped during the process, the message is written using `System.out,println()` and shown on the system console intead of the application `Console` tab, so as to replace the use of a new thread.
 
-## Project Problem Statement and Activities
-
-
-> **Activity 1 Due (20%): 15-10-2018 (Wk 7 Mon) 23:59**
-> Submission details will be provided on Canvas
->
-> **Activity 2 Due (30%): 19-11-2018 (Wk 12 Mon) 23:59**
-> Submission details will be provided at Canvas
 
 ## Introduction
 

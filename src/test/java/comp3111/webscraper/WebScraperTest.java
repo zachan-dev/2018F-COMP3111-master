@@ -2,18 +2,7 @@ package comp3111.webscraper;
 
 import static org.junit.Assert.*;
 
-import java.net.URLEncoder;
-import java.util.List;
-
-import org.jsoup.Jsoup;
-import org.jsoup.nodes.Document;
-import org.jsoup.select.Elements;
 import org.junit.Test;
-import org.jsoup.Jsoup;
-import org.jsoup.nodes.Document;
-import org.jsoup.nodes.Element;
-import org.jsoup.select.*;
-
 
 public class WebScraperTest {
 
@@ -92,14 +81,5 @@ public class WebScraperTest {
 		scraperUnderTest.scrape(Keyword);
 		assertTrue(Controller.pages + ";" + Controller.size, Controller.pages==expectedPage && Controller.size==expectedSize);
 	}
-	@Test
-	public void TestRefine() {
-		WebScraper test = new WebScraper();
-		test.scrape("apple+pie");
-		List<Item> result= test.refine("Favourites");
-		assertEquals(result.get(0).getPortal(), "Preloved");
-
-	}
-	
 	
 }
