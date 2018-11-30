@@ -27,9 +27,18 @@ public class Item implements Comparable<Item> {
 	public void setPrice(double price) {
 		this.price = price;
 	}
+	/**
+	 * Returns the URL
+	 * @return String of url
+	 */
 	public String getUrl() {
 		return url;
 	}
+	/**
+	 * Set the URL
+	 *@param url - the url you want to set
+	 * Returns the URL
+	 */
 	public void setUrl(String url) {
 		this.url = url;
 	}
@@ -39,6 +48,11 @@ public class Item implements Comparable<Item> {
 	public void setDate(String date) {	
 		this.date = date;
 	}
+	/**
+	 * Compare value
+	 * @param a - the item you want to compare to
+	 * @return return 1 if current value is greater than comparing value;return -1 if current value is greater than comparing value;return 0 if they are the same
+	 */
 	public int compareTo(Item a) {
 		double result = this.price-a.price;
 		if (result<0)

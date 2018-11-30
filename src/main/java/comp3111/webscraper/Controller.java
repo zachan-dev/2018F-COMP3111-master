@@ -107,6 +107,7 @@ public class Controller extends WebScraperApplication{
 	 /**
 	  * Called when the search button is pressed.
 	  * @throws ParseException 
+	  * enable refine button
 	  */
 	 @FXML
 	 private void actionSearch() throws ParseException {
@@ -115,6 +116,11 @@ public class Controller extends WebScraperApplication{
 		 fillTable(result);
 
 	 }
+	 /**
+	  * Called when the refine button is pressed.
+	  * @throws ParseException 
+	  * disable refine button
+	  */
 	 @FXML
 	 private void actionRefine() throws ParseException {
 
