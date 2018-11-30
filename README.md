@@ -9,7 +9,7 @@
 > **CHANG, Hiu Tung / Hilda**
 > Basic Task no. 2 and 5
 > ITSC: htchang
-> Github: htchang
+> Github: htchang1
 >
 > **CHAN, Siu Him / Zach**
 > Basic Task no. 3 and 6
