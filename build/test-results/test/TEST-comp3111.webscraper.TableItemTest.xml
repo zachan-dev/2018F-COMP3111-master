@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="comp3111.webscraper.TableItemTest" tests="8" skipped="0" failures="0" errors="0" timestamp="2018-11-30T12:16:23" hostname="DESKTOP-CKGH2IF" time="0.078">
+<testsuite name="comp3111.webscraper.TableItemTest" tests="8" skipped="0" failures="0" errors="0" timestamp="2018-12-10T04:59:38" hostname="Zach-Mac.local" time="0.193">
   <properties/>
-  <testcase name="testInitialiseUrl" classname="comp3111.webscraper.TableItemTest" time="0.028"/>
+  <testcase name="testInitialiseUrl" classname="comp3111.webscraper.TableItemTest" time="0.177"/>
   <testcase name="testInitialiseDate" classname="comp3111.webscraper.TableItemTest" time="0.0"/>
-  <testcase name="testSetDate" classname="comp3111.webscraper.TableItemTest" time="0.004"/>
+  <testcase name="testSetDate" classname="comp3111.webscraper.TableItemTest" time="0.006"/>
   <testcase name="testSetUrl" classname="comp3111.webscraper.TableItemTest" time="0.001"/>
-  <testcase name="testInitialisePrice" classname="comp3111.webscraper.TableItemTest" time="0.0"/>
-  <testcase name="testInitialiseTitle" classname="comp3111.webscraper.TableItemTest" time="0.005"/>
-  <testcase name="testSetPrice" classname="comp3111.webscraper.TableItemTest" time="0.014"/>
-  <testcase name="testSetTitle" classname="comp3111.webscraper.TableItemTest" time="0.001"/>
+  <testcase name="testInitialisePrice" classname="comp3111.webscraper.TableItemTest" time="0.004"/>
+  <testcase name="testInitialiseTitle" classname="comp3111.webscraper.TableItemTest" time="0.001"/>
+  <testcase name="testSetPrice" classname="comp3111.webscraper.TableItemTest" time="0.001"/>
+  <testcase name="testSetTitle" classname="comp3111.webscraper.TableItemTest" time="0.0"/>
   <system-out><![CDATA[]]></system-out>
   <system-err><![CDATA[]]></system-err>
 </testsuite>

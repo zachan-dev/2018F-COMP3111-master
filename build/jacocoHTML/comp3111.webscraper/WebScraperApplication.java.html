@@ -12,6 +12,7 @@ import javafx.scene.Scene;
 
 
 /**
+ * The entry point of the entire program.
  * @author kevinw
  * 
  * The entry point of the entire program. It is quite unlikely you need to change this file. But you can change it if you want :)
@@ -36,35 +37,35 @@ import javafx.scene.Scene;
  *
  * 
  */
-<span class="fc" id="L39">public class WebScraperApplication extends Application {</span>
+<span class="nc" id="L40">public class WebScraperApplication extends Application {</span>
 
     private static final String UI_FILE = &quot;/ui.fxml&quot;;  //It is very important that you put the file under folder src/main/resources/
 	
-	/* 
+	/**
 	 * @see javafx.application.Application#start(javafx.stage.Stage)
 	 * 
 	 * This function will be called by the framework shortly after the program started. You are not required to touch any part of this.
 	 */
 	@Override
 	public void start(Stage stage) throws Exception {
-<span class="nc" id="L50">    	FXMLLoader loader = new FXMLLoader();</span>
-<span class="nc" id="L51">    	loader.setLocation(getClass().getResource(UI_FILE));</span>
-<span class="nc" id="L52">   		VBox root = (VBox) loader.load();</span>
-<span class="nc" id="L53">   		Scene scene =  new Scene(root);</span>
-<span class="nc" id="L54">   		stage.setScene(scene);</span>
-<span class="nc" id="L55">   		stage.setTitle(&quot;WebScrapper&quot;);</span>
-<span class="nc" id="L56">   		stage.show();</span>
+<span class="nc" id="L51">    	FXMLLoader loader = new FXMLLoader();</span>
+<span class="nc" id="L52">    	loader.setLocation(getClass().getResource(UI_FILE));</span>
+<span class="nc" id="L53">   		VBox root = (VBox) loader.load();</span>
+<span class="nc" id="L54">   		Scene scene =  new Scene(root);</span>
+<span class="nc" id="L55">   		stage.setScene(scene);</span>
+<span class="nc" id="L56">   		stage.setTitle(&quot;WebScrapper&quot;);</span>
+<span class="nc" id="L57">   		stage.show();</span>
     		
 
-<span class="nc" id="L59">	}</span>
+<span class="nc" id="L60">	}</span>
 
 	/**
 	 * Entry point of the program. No argument should be supplied
 	 * @param args - not used.
 	 */
 	public static void main(String args[]) {
-<span class="nc" id="L66">		Application.launch(args);</span>
-<span class="nc" id="L67">	}</span>
+<span class="nc" id="L67">		Application.launch(args);</span>
+<span class="nc" id="L68">	}</span>
 
 
 }

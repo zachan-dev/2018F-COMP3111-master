@@ -140,21 +140,28 @@ public class WebScraper {
 			System.out.println("Searching in Preloved...");
 			do {
 				String searchUrl1 = DEFAULT_URL1 + "search?keyword=" + URLEncoder.encode(keyword, "UTF-8") + "&page=" + noPage;
-				Document doc = Jsoup.connect(searchUrl1).get();
+				Document doc = Jsoup.connect(searchUrl1).timeout(1000*1000).get();
 				Elements ele=doc.select("li.search-result");
 				Elements a=ele.select("li[data-test-element='search-result']");
 				noItem = a.size();
 
 				for (int i = 0; i < a.size(); i++) {
 					String name=a.get(i).select("span[itemprop='name']").text();
+					if (name == null) {
+						break;
+					}
 					String price=a.get(i).select("span[itemprop='price']").text();				
 					try {
 						price=price.substring(1,price.length());	
 						price=price.replace(",","");
+						if (price == null || price.isEmpty() || price == "") price = "0";
 					}
 					catch (Exception e) {
 						price="0";
 					}
+					// It is possible that an item doesn't have any price, we set the price to 0.0
+					// in this case
+					price = price == null ? "0.0" : price;
 					String link=a.get(i).select("a").attr("href");
 					Item item = new Item();
 					item.setTitle(name);
@@ -162,7 +169,7 @@ public class WebScraper {
 					item.setUrl(link);
 					item.setPrice(new Double(price));
 					item.setDate("-");
-					result.add(item);				
+					result.add(item);
 				}
 				if (noItem != 0) { 
 					noPage++;

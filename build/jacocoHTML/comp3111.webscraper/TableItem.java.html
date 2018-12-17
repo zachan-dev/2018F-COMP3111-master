@@ -3,55 +3,93 @@
 import javafx.beans.property.SimpleDoubleProperty;
 import javafx.beans.property.SimpleStringProperty;
 
+/**
+ * To format the result item to fill the Table
+ * Use by the fillTable() in Controller.java
+ * @author heidileeyn
+ *
+ */
+
 public class TableItem {
 	private SimpleStringProperty title ; 
 	private SimpleDoubleProperty price ;
 	private SimpleStringProperty url ;
 	private SimpleStringProperty date ;
 	
-	
-<span class="nc" id="L13">	public TableItem(String title, double price, String url, String date) {</span>
-<span class="nc" id="L14">		this.title = new SimpleStringProperty(title);</span>
-<span class="nc" id="L15">		this.price = new SimpleDoubleProperty(price);</span>
-<span class="nc" id="L16">		this.url = new SimpleStringProperty(url);</span>
-<span class="nc" id="L17">		this.date = new SimpleStringProperty(date);</span>
-<span class="nc" id="L18">	}</span>
+	/**
+	 * Initializer of TableItem
+	 * @param title Title of the item
+	 * @param price Price of the item
+	 * @param url Url of the item
+	 * @param date Date of the item
+	 */
+<span class="nc" id="L26">	public TableItem(String title, double price, String url, String date) {</span>
+<span class="nc" id="L27">		this.title = new SimpleStringProperty(title);</span>
+<span class="nc" id="L28">		this.price = new SimpleDoubleProperty(price);</span>
+<span class="nc" id="L29">		this.url = new SimpleStringProperty(url);</span>
+<span class="nc" id="L30">		this.date = new SimpleStringProperty(date);</span>
+<span class="nc" id="L31">	}</span>
 	/*
 	public TableItem() {
 		
 	}*/
 	
-	
+	/**
+	 * 
+	 * @return A String of the Item's title
+	 */
 	public String getTitle() {
-<span class="nc" id="L26">		return title.get();</span>
+<span class="nc" id="L42">		return title.get();</span>
 	}
-	
+	/**
+	 * 
+	 * @param title A String of the Item's title
+	 */
 	public void setTitle(String title) {
-<span class="nc" id="L30">		this.title.set(title);</span>
-<span class="nc" id="L31">	}</span>
-	
+<span class="nc" id="L49">		this.title.set(title);</span>
+<span class="nc" id="L50">	}</span>
+	/**
+	 * 
+	 * @return The Price of the item
+	 */
 	public double getPrice() {
-<span class="nc" id="L34">		return price.get();</span>
+<span class="nc" id="L56">		return price.get();</span>
 	}
-	
+	/**
+	 * 
+	 * @param price -- the price of the item
+	 */
 	public void setPrice(double price) {
-<span class="nc" id="L38">		this.price.set(price);</span>
-<span class="nc" id="L39">	}</span>
-	
+<span class="nc" id="L63">		this.price.set(price);</span>
+<span class="nc" id="L64">	}</span>
+	/**
+	 * 
+	 * @return A string of the URL
+	 */
 	public String getUrl() {
-<span class="nc" id="L42">		return url.get();</span>
+<span class="nc" id="L70">		return url.get();</span>
 	}
-	
+	/**
+	 * 
+	 * @param url -- A string of the URL
+	 */
 	public void setUrl(String url) {
-<span class="nc" id="L46">		this.url.set(url);</span>
-<span class="nc" id="L47">	}</span>
-	
+<span class="nc" id="L77">		this.url.set(url);</span>
+<span class="nc" id="L78">	}</span>
+	/**
+	 * 
+	 * @return A string of the date
+	 */
 	public String getDate() {
-<span class="nc" id="L50">		return date.get();</span>
+<span class="nc" id="L84">		return date.get();</span>
 	}
-	
+	/**
+	 * 
+	 * 
+	 * @param date -- A string of the date
+	 */
 	public void setDate(String date) {
-<span class="nc" id="L54">		this.date.set(date);</span>
-<span class="nc" id="L55">	}</span>
+<span class="nc" id="L92">		this.date.set(date);</span>
+<span class="nc" id="L93">	}</span>
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.1.201803210924</span></div></body></html>

@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="comp3111.webscraper.TableTest" tests="8" skipped="0" failures="0" errors="0" timestamp="2018-12-10T04:59:44" hostname="Zach-Mac.local" time="0.01">
+  <properties/>
+  <testcase name="testInitialiseUrl" classname="comp3111.webscraper.TableTest" time="0.001"/>
+  <testcase name="testInitialiseDate" classname="comp3111.webscraper.TableTest" time="0.001"/>
+  <testcase name="testSetDate" classname="comp3111.webscraper.TableTest" time="0.001"/>
+  <testcase name="testSetUrl" classname="comp3111.webscraper.TableTest" time="0.001"/>
+  <testcase name="testInitialisePrice" classname="comp3111.webscraper.TableTest" time="0.001"/>
+  <testcase name="testInitialiseTitle" classname="comp3111.webscraper.TableTest" time="0.0"/>
+  <testcase name="testSetPrice" classname="comp3111.webscraper.TableTest" time="0.001"/>
+  <testcase name="testSetTitle" classname="comp3111.webscraper.TableTest" time="0.001"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>
