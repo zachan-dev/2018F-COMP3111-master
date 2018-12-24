@@ -1,5 +1,10 @@
 # COMP3111: Software Engineering Project - Webscrapper
 
+## Java Doc. Link
+
+The Java Documentation can be viewed by clicking the link: https://zach1king.github.io/2018F-COMP3111-master/
+
+
 ## Development Team 34 Member List and Assignment
 > **LEE, Yuen Nam / Heidi**
 > Basic Task no. 1 and 4
